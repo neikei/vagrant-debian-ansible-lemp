@@ -1,0 +1,43 @@
+##################################################
+### Install, configure and secure webserver
+- name: Set up webserver
+  apt: name=nginx state=present
+
+- name: Create folders
+  file: path={{ item.path }} mode={{ item.mode }} state=directory owner=root group=root
+  with_items:
+    - { path: "/etc/nginx/sites-available", mode: 755 }
+    - { path: "/etc/nginx/sites-enabled", mode: 755 }
+
+- name: Copy new config file.
+  template:
+    src=nginx.conf
+    dest=/etc/nginx/nginx.conf
+  notify:
+    - restart nginx
+
+- name: Copy new virtual hosts file.
+  template:
+    src=vagrant
+    dest=/etc/nginx/sites-available/vagrant
+
+- name: Disable default virtual hosts file.
+  file:
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+  notify:
+    - restart nginx
+
+- name: Enable new virtual hosts file.
+  file:
+    src=/etc/nginx/sites-available/vagrant
+    dest=/etc/nginx/sites-enabled/vagrant
+    state=link
+  notify:
+    - restart nginx
+
+- name: Allow Ports
+  ufw: rule=allow port={{ item }}
+  with_items:
+    - 80
+    - 443

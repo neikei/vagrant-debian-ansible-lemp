@@ -1,0 +1,7 @@
+- set_fact: role_name=mariadb
+
+##################################################
+### Install MariaDB
+- include: install.yml
+- include: configure.yml
+- include: secure.yml

@@ -1,0 +1,43 @@
+##################################################
+# Install PHP
+- name: Add repository for Debian
+  apt_repository: repo="deb http://packages.dotdeb.org {{ ansible_distribution_release }} all" state=present
+
+- name: Add apt key for Debian
+  apt_key: url=https://www.dotdeb.org/dotdeb.gpg state=present
+
+- name: Update apt
+  apt: update_cache=yes
+
+- name: Install PHP Packages
+  apt: name={{ item }} state=present
+  with_items:
+    - php7.0
+    - php7.0-fpm
+    - php7.0-mysql
+    - php7.0-mcrypt
+    - php7.0-cli
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-intl
+    - php7.0-json
+    - php7.0-mbstring
+    - php7.0-opcache
+    - php7.0-readline
+    - php7.0-xml
+    - php7.0-xsl
+    - php7.0-zip
+    - php-common
+
+- name: Copy PHP-FPM config
+  template:
+    src=www.conf
+    dest=/etc/php/7.0/fpm/pool.d/www.conf
+
+- name: Restart PHP-FPM
+  service: name=php7.0-fpm state=restarted
+
+##################################################
+# Install Composer
+- name: Install Composer globally
+  shell: curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f composer.phar {{ composer_path }} creates={{ composer_path }}

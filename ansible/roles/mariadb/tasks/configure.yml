@@ -1,0 +1,4 @@
+- name: Add allow rule for 3306 to firewall
+  firewalld: zone=public port=3306/tcp permanent=true state=enabled
+  notify:
+  - Restart the mariadb service

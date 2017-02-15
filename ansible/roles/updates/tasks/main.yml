@@ -1,0 +1,7 @@
+##################################################
+# Update Debian
+- name: Update Debian
+  apt:
+    upgrade: dist
+    update_cache: yes
+    dpkg_options: 'force-confold,force-confdef'

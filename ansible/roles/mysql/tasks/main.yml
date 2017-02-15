@@ -1,0 +1,24 @@
+##################################################
+# Installation
+- name: Install Packages
+  apt:  name={{ item }} state=installed
+  with_items:
+  - mysql-server
+#  - mysql-client
+#  - libdbd-mysql
+  - python-mysqldb
+
+- name: User Creation
+  mysql_user: name={{ mysql_user }} host=% password={{ mysql_pw }} priv=*.*:ALL state=present
+
+- name: my.cnf configuration
+  ini_file: dest=/etc/mysql/my.cnf
+            section=mysqld
+            option=bind-address
+            value=*
+  notify: restart mysql
+
+- name: Allow Ports
+  ufw: rule=allow port={{ item }}
+  with_items:
+    - 3306
