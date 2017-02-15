@@ -1,2 +1,0 @@
-- name: Restart the mariadb service
-  service: name=mariadb state=restarted enabled=true
