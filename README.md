@@ -1,6 +1,6 @@
 # Vagrant-Debian-Ansible-LEMP
 
-This is just a simple LEMP setup with nginx, php7 and mariadb on a CentOS box from the bento project.
+This is just a simple LEMP setup with nginx, php7 and mysql on a Debian box from the bento project.
 
 ## Requirements
 1. Virtualbox >= 5.1.14
