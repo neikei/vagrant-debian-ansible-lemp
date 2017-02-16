@@ -64,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3306, host: 3306  # mysql
   config.vm.network :private_network, ip: "192.168.56.123"
 
-  # Configre shared folder
+  # Configure shared folder
   if OS.windows?
     config.vm.synced_folder ".", "/vagrant", type: "nfs"
   else

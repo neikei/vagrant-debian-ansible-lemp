@@ -1,11 +1,9 @@
 ##################################################
-# Installation
+# Install and configure MySQL
 - name: Install Packages
   apt:  name={{ item }} state=installed
   with_items:
   - mysql-server
-#  - mysql-client
-#  - libdbd-mysql
   - python-mysqldb
 
 - name: User Creation

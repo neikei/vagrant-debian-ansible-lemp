@@ -27,6 +27,10 @@ This is just a simple LEMP setup with nginx, php7 and mysql on a Debian box from
 Place your stuff in the subfolder web, because the folder is configured as share into the webserver root path in your VM.
 
 ## Changelog
+16 February 2017
+ - Changed PHP repository from dotdeb.org to sury.org
+ - Updated PHP to version 7.1
+
 14 February 2017
  - Initial Commit
- - Debian 8.6, Nginx, PHP7, MySQL
+ - Debian 8.6, Nginx, PHP 7.0, MySQL

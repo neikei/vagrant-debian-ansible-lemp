@@ -1,18 +1,19 @@
 ##################################################
-### Basic system packages
+### Install basic system packages
 - name: Install basic packages
   apt: name={{ item }} state=present
   with_items:
-    - apt-transport-https
     - vim
     - git
     - curl
     - wget
     - zip
     - unzip
+    - apt-transport-https
+    - ca-certificates
 
 ##################################################
-### Basic firewall installation and configuration
+### Install and configute ufw firewall
 - name: Set up firewall
   apt: name=ufw state=present
 
