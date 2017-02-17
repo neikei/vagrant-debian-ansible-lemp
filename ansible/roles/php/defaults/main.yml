@@ -1,1 +1,6 @@
+repo_keyserver_url: https://packages.sury.org/php/apt.gpg
+repo_server_url: https://packages.sury.org/php/
+php_version: 7.1
+composer_url: https://getcomposer.org/installer
+composer_tmp: /tmp/composer.phar
 composer_path: /usr/local/bin/composer
