@@ -42,7 +42,4 @@
 ##################################################
 # Install Composer
 - name: Download Composer
-  get_url: url={{ composer_url }} dest={{ composer_tmp }}
-
-- name: Install Composer
-  shell: /usr/bin/php && /bin/mv -f {{ composer_tmp }} {{ composer_path }} creates={{ composer_path }}
+  shell: curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f composer.phar {{ composer_path }} creates={{ composer_path }}
