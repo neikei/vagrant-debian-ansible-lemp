@@ -32,7 +32,8 @@
     src=www.conf
     dest=/etc/php/{{ php_version }}/fpm/pool.d/www.conf
 
-- lineinfile:
+- name: Configure timezone
+  lineinfile:
     dest=/etc/php/{{ php_version }}/fpm/php.ini
     regexp='^;date.timezone'
     line='date.timezone = "Europe/Berlin"'
