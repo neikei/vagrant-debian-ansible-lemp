@@ -1,0 +1,9 @@
+##################################################
+# Install nodejs
+- name: Add repository for Debian
+  shell: 'curl -sL https://deb.nodesource.com/setup_7.x | bash -'
+
+- name: Install Nodejs
+  apt: name={{ item }} state=latest
+  with_items:
+    - nodejs
