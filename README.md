@@ -1,6 +1,17 @@
-# Vagrant-Debian-Ansible-LEMP
+# Vagrant-Debian-Ansible-LEMP  
+[![Build Status](https://travis-ci.org/travis-ci/travis-build.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
 
-This is just a simple LEMP setup with nginx, php7 and mysql on a Debian based Vagrantbox from the bento project.
+This is just a simple LEMP setup on a Debian based Vagrantbox from the bento project.
+
+## Included components
+
+ - Debian 8.6
+ - Nginx
+ - MySQL
+ - PHP 7.1
+ - PHPUnit
+ - Composer
+ - nodejs
 
 ## Requirements
 1. Virtualbox >= 5.1.14
@@ -30,6 +41,7 @@ Place your stuff in the subfolder web, because the folder is configured as share
 22 February 2017
  - Added PHPUnit
  - Added tests for the Vagrantbox
+ - Added Travis CI builds
 
 21 February 2017
  - Added nodejs

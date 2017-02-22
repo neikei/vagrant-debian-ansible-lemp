@@ -1,2 +1,3 @@
 # Vagrantbox
+[local]
 default ansible_connection=local
