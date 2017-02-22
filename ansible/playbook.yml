@@ -6,4 +6,4 @@
     - php
     - mysql
     - nodejs
-#    - tests
+    - tests

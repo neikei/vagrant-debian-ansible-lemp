@@ -43,4 +43,4 @@
 
 - name: Webserver check result
   fail: msg="Webserver isn't working properly"
-  when: "'PHP' not in webserver.content"
+  when: "'nginx' not in webserver.content"
