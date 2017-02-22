@@ -37,9 +37,8 @@
     dest=/etc/php/{{ php_version }}/fpm/php.ini
     regexp='^;date.timezone'
     line='date.timezone = "Europe/Berlin"'
-
-- name: Restart PHP-FPM
-  service: name=php{{ php_version }}-fpm state=restarted
+  notify:
+   - restart php-fpm
 
 ##################################################
 ### Install PHPUnit
