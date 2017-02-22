@@ -1,5 +1,8 @@
 repo_keyserver_url: https://packages.sury.org/php/apt.gpg
 repo_server_url: https://packages.sury.org/php/
 php_version: 7.1
+phpunit_url: https://phar.phpunit.de/phpunit.phar
+phpunit_path: /usr/local/bin/phpunit
 composer_url: https://getcomposer.org/installer
-composer_path: /usr/local/bin/composer
+composer_tmp: /tmp/installer
+composer_path: /usr/local/bin/

@@ -27,6 +27,10 @@ This is just a simple LEMP setup with nginx, php7 and mysql on a Debian based Va
 Place your stuff in the subfolder web, because the folder is configured as share into the webserver root path in your VM.
 
 ## Changelog
+22 February 2017
+ - Added PHPUnit
+ - Added tests for the Vagrantbox
+
 21 February 2017
  - Added nodejs
 

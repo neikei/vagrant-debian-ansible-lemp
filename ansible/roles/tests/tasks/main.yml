@@ -1,0 +1,46 @@
+##################################################
+### Installation tests
+- name: Check Nginx
+  shell: 'nginx -v'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stderr }}"
+
+- name: Check PHP
+  shell: 'php -v | head -1'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
+- name: Check Composer
+  shell: 'composer --version'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
+- name: Check PHPUnit
+  shell: 'phpunit --version'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
+- name: Check nodejs
+  shell: 'nodejs -v'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
+##################################################
+### Functionality tests
+- name: Webserver check
+  action: uri url=http://localhost/ return_content=yes
+  register: webserver
+
+- name: Webserver check result
+  fail: msg="Webserver isn't working properly"
+  when: "'PHP' not in webserver.content"

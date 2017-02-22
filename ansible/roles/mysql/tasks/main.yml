@@ -1,5 +1,5 @@
 ##################################################
-# Install and configure MySQL
+### Install and configure MySQL
 - name: Install Packages
   apt:  name={{ item }} state=installed
   with_items:

@@ -11,23 +11,23 @@
     - { path: "/var/lib/nginx", mode: 777, user: vagrant, group: root }
     - { path: "/var/lib/nginx/tmp", mode: 777, user: vagrant, group: root }
 
-
-- name: Copy new config file.
-  template:
-    src=nginx.conf
-    dest=/etc/nginx/nginx.conf
-
-- name: Copy new virtual hosts file.
-  template:
-    src=vagrant
-    dest=/etc/nginx/sites-available/vagrant
-
 - name: Disable default virtual hosts file.
   file:
     path=/etc/nginx/sites-enabled/default
     state=absent
   notify:
-    - restart nginx
+   - restart nginx
+
+- name: Configure vagrant as nginx user
+  lineinfile:
+    dest=/etc/nginx/nginx.conf
+    regexp='^user www-data'
+    line='user vagrant;'
+
+- name: Copy new virtual hosts file.
+  template:
+    src=vagrant
+    dest=/etc/nginx/sites-available/vagrant
 
 - name: Enable new virtual hosts file.
   file:
@@ -35,7 +35,7 @@
     dest=/etc/nginx/sites-enabled/vagrant
     state=link
   notify:
-    - restart nginx
+   - restart nginx
 
 - name: Allow Ports
   ufw: rule=allow port={{ item }}

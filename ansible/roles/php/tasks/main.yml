@@ -1,5 +1,5 @@
 ##################################################
-# Install and configure PHP
+### Install and configure PHP
 - name: Add apt key for Debian
   apt_key: url={{ repo_keyserver_url }} state=present
 
@@ -42,6 +42,23 @@
   service: name=php{{ php_version }}-fpm state=restarted
 
 ##################################################
-# Install Composer
+### Install PHPUnit
+- name: Install PHPUnit
+  get_url:
+    url="{{ phpunit_url }}"
+    dest="{{ phpunit_path }}"
+    mode=777
+
+##################################################
+### Install Composer
 - name: Download Composer
-  shell: curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f composer.phar {{ composer_path }} creates={{ composer_path }}
+  get_url:
+    url="{{ composer_url }}"
+    dest="{{ composer_tmp }}"
+    mode=777
+
+- name: Install Composer
+  shell: "cat {{ composer_tmp }} | php -- --install-dir={{ composer_path }}"
+
+- name: Rename Composer
+  shell: mv -f {{ composer_path }}/composer.phar {{ composer_path }}/composer
