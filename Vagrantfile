@@ -75,7 +75,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Run the provisioning
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/playbook.yml"
-      ansible.inventory_path = "ansible/inventory"
       ansible.sudo = true
   end
 
