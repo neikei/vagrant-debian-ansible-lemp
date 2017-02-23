@@ -60,8 +60,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Configure the VM
   config.vm.hostname = 'lemp-playground'
-  config.vm.network :forwarded_port, host: 80, guest: 80      # website
-  config.vm.network :forwarded_port, host: 443, guest: 443    # website
+  config.vm.network :forwarded_port, guest: 80, host: 8080    # website
+  config.vm.network :forwarded_port, guest: 443, host: 4443   # website ssl
   config.vm.network :forwarded_port, guest: 3306, host: 3306  # mysql
   config.vm.network :private_network, ip: "192.168.56.123"
 
