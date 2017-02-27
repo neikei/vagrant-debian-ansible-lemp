@@ -1,5 +1,5 @@
 # Vagrant-Debian-Ansible-LEMP  
-[![Build Status](https://travis-ci.org/travis-ci/travis-build.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
+[![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
 
 This is just a simple LEMP setup on a Debian based Vagrantbox from the bento project.
 
