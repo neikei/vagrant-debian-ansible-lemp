@@ -5,7 +5,7 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the bento pro
 
 ## Included components
 
- - Debian 8.6
+ - Debian 8.7
  - Nginx
  - MySQL
  - PHP 7.1
@@ -38,6 +38,9 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the bento pro
 Place your stuff in the subfolder web, because the folder is configured as share into the webserver root path in your VM.
 
 ## Changelog
+27 February 2017
+ - Updated Debian to version 8.7
+
 22 February 2017
  - Added PHPUnit
  - Added tests for the Vagrantbox
