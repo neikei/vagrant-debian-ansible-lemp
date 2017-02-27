@@ -1,7 +1,7 @@
 # Vagrant-Debian-Ansible-LEMP  
 [![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
 
-This is just a simple LEMP setup on a Debian based Vagrantbox from the bento project.
+This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento project](https://github.com/chef/bento).
 
 ## Included components
 
