@@ -22,7 +22,7 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
  - Vagrant Plugins:
    - vagrant-hostmanager # necessary for host entries
    - vagrant-vbguest # recommended for virtualbox users
-   - vagrant-winnfsd # only for Windows only
+   - vagrant-winnfsd # only for Windows
 
 ## Installation
 1. git clone https://github.com/neikei/vagrant-debian-ansible-lemp.git
