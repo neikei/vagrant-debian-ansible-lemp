@@ -22,6 +22,8 @@
   with_items:
    - { src: inputrc, dest: /root/.inputrc }
    - { src: vimrc, dest: /root/.vimrc }
+   - { src: inputrc, dest: /home/vagrant/.inputrc }
+   - { src: vimrc, dest: /home/vagrant/.vimrc }
 
 ##################################################
 ### Install and configute ufw firewall
