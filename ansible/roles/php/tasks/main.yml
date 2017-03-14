@@ -1,10 +1,24 @@
 ##################################################
+### Pre-checks
+- name: Check installed PHP version
+  shell: 'dpkg --list | grep php | grep "^ii" | wc -l'
+  register: php_installed
+
+- name: Check if required PHP version is installed
+  shell: 'dpkg --list | grep php{{ php_version }} | grep "^ii" | wc -l'
+  register: php_required_installed
+
+- name: Remove different PHP version if installed
+  apt: name=php* state=absent purge=yes autoremove=yes
+  when: php_installed.stdout != "0" and php_required_installed.stdout == "0"
+
+##################################################
 ### Install and configure PHP
 - name: Add apt key for Debian
-  apt_key: url={{ repo_keyserver_url }} state=present
+  apt_key: url={{ php_repo_key }} state=present
 
 - name: Add repository for Debian
-  apt_repository: repo="deb {{ repo_server_url }} {{ ansible_distribution_release }} main" state=present update_cache=yes
+  apt_repository: repo="deb {{ php_repo }} {{ ansible_distribution_release }} main" state=present update_cache=yes
 
 - name: Install PHP Packages
   apt: name={{ item }} state=present
@@ -25,7 +39,22 @@
     - php{{ php_version }}-xsl
     - php{{ php_version }}-zip
     - php{{ php_version }}-bz2
-    - php-common
+    - php{{ php_version }}-redis
+    - php{{ php_version }}-gmp
+    - php{{ php_version }}-igbinary
+    - php{{ php_version }}-bcmath
+    - php{{ php_version }}-imagick
+    - php{{ php_version }}-memcached
+    - php{{ php_version }}-mongodb
+    - php{{ php_version }}-msgpack
+    - php{{ php_version }}-pspell
+    - php{{ php_version }}-redis
+    - php{{ php_version }}-ssh2
+    - php{{ php_version }}-xmlrpc
+    - php{{ php_version }}-common
+  notify:
+   - restart php-fpm
+   - restart nginx
 
 - name: Copy PHP-FPM config
   template:
@@ -37,6 +66,7 @@
     dest=/etc/php/{{ php_version }}/fpm/php.ini
     regexp='^;date.timezone'
     line='date.timezone = "Europe/Berlin"'
+    backrefs=yes
   notify:
    - restart php-fpm
 

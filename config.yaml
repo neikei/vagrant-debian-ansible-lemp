@@ -1,0 +1,12 @@
+configs:
+    use: 'defaults'
+    defaults:
+        public_ip: '192.168.56.123'
+        vmname: 'lemp-development'
+        servername: 'lemp.dev'
+        projectname: 'project'
+    custom:
+        public_ip: ''
+        vmname: ''
+        servername: ''
+        projectname: ''

@@ -18,13 +18,6 @@
   notify:
    - restart nginx
 
-- name: Configure vagrant as nginx user
-  lineinfile:
-    dest=/etc/nginx/nginx.conf
-    regexp='^user www-data'
-    line='user vagrant;'
-    backrefs=yes
-
 - name: Copy new virtual hosts file.
   template:
     src=vagrant

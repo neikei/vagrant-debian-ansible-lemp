@@ -1,6 +1,11 @@
-
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+
+require 'yaml'
+
+current_dir    = File.dirname(File.expand_path(__FILE__))
+configs        = YAML.load_file("#{current_dir}/config.yaml")
+vagrant_config = configs['configs'][configs['configs']['use']]
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
@@ -46,11 +51,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vbguest.auto_update = true
   end
 
+  if !Vagrant.has_plugin?('vagrant-hostmanager')
+     puts "The vagrant-hostmanager plugin is required. Please install it with \"vagrant plugin install vagrant-hostmanager\""
+     exit
+  end
+
   config.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.customize ['modifyvm', :id, '--memory', 2048]
       vb.customize ["modifyvm", :id, "--cpus", 2]
-      vb.customize ["modifyvm", :id, "--name", "vagrant-debian-lemp-playground"]
+      vb.customize ["modifyvm", :id, "--name", vagrant_config['vmname']]
   end
 
   config.vm.provider "parallels" do |v|
@@ -59,11 +69,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Configure the VM
-  config.vm.hostname = 'lemp-playground'
-  config.vm.network :forwarded_port, guest: 80, host: 8080    # website
-  config.vm.network :forwarded_port, guest: 443, host: 4443   # website ssl
-  config.vm.network :forwarded_port, guest: 3306, host: 3306  # mysql
-  config.vm.network :private_network, ip: "192.168.56.123"
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  config.hostmanager.aliases = vagrant_config['servername']
+  config.vm.hostname = vagrant_config['servername']
+  config.vm.network :private_network, ip: vagrant_config['public_ip']
 
   # Configure shared folder
   if OS.windows?
@@ -73,9 +85,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Run the provisioning
+  config.vm.provision "shell", path: "ansible/tools/install_ansible_in_Vagrantbox.sh"
+
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/playbook.yml"
       ansible.sudo = true
+      ansible.extra_vars = {
+        servername: vagrant_config['servername'],
+        projectname: vagrant_config['projectname']
+      }
   end
 
 end

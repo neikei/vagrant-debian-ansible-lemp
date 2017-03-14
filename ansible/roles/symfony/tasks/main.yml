@@ -1,0 +1,17 @@
+##################################################
+### Install symfony
+- name: Download Installer from Repo
+  get_url:
+    url="{{ symfony_url }}"
+    dest="{{ symfony_dest }}"
+    mode=777
+
+##################################################
+### Configure symfony project
+- name: Check if project already exists
+  stat: path="/vagrant/{{ projectname }}"
+  register: stat_project
+
+- name: Create project
+  shell: cd /vagrant && symfony new {{ projectname }}
+  when: stat_project.stat.exists == false

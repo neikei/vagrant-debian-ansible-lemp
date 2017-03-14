@@ -1,13 +1,13 @@
 server {
     listen       80;
-    server_name  _;
-    root         /vagrant/web;
+    server_name  {{ servername }};
+    root         /vagrant/{{ projectname }}/web/;
 
     location / {
-        try_files $uri /index.php$is_args$args;
+        try_files $uri /app.php$is_args$args;
     }
 
-    location ~ \.php$ {
+    location ~ ^/(app|app_dev|config|index)\.php(/|$) {
         fastcgi_pass unix:/var/run/php-fpm-www.sock;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;

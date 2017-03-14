@@ -1,9 +1,18 @@
 ##################################################
 ### Install nodejs
-- name: Add repository for Debian
-  shell: "curl -sL {{ repo_server_url }} | bash -"
+- name: Download Installer from Repo
+  get_url:
+    url="{{ nodejs_url }}"
+    dest="{{ nodejs_tmp }}"
+    mode=777
+
+- name: Run Installer
+  shell: "/bin/bash {{ nodejs_tmp }}"
 
 - name: Install Nodejs
   apt: name={{ item }} state=latest
   with_items:
     - nodejs
+
+- name: Link nodejs to node
+  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link

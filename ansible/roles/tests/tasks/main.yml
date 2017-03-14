@@ -35,12 +35,19 @@
 - name: Display result
   debug: msg="{{ test_result.stdout }}"
 
+- name: Check symfony
+  shell: 'symfony --version'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
 ##################################################
 ### Functionality tests
 - name: Webserver check
-  action: uri url=http://localhost/ return_content=yes
+  action: uri url=http://127.0.0.1/ return_content=yes
   register: webserver
 
 - name: Webserver check result
   fail: msg="Webserver isn't working properly"
-  when: "'nginx' not in webserver.content"
+  when: "'Welcome' not in webserver.content"
