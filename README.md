@@ -45,6 +45,13 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
 
 Check the config.yaml if you want to modify public_ip, vmname, servername and projectname.
 
+### Project switcher
+
+The config.yaml can be used as project switcher.
+
+1. Change the use parameter to match the needed project identifier
+2. Trigger the vagrant provisioning again with 'vagrant reload && vagrant provision'
+
 ## Changelog
 14 March 2017
  - Added hostmanger for local hostfile management

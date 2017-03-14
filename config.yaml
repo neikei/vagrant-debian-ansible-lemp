@@ -1,11 +1,11 @@
 configs:
-    use: 'defaults'
-    defaults:
+    use: 'defaults'                 # project switcher
+    defaults:                       # project identifier
         public_ip: '192.168.56.123'
         vmname: 'lemp-development'
         servername: 'lemp.dev'
         projectname: 'project'
-    custom:
+    custom:                         # project identifier
         public_ip: ''
         vmname: ''
         servername: ''

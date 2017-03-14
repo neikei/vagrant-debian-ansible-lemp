@@ -50,4 +50,4 @@
 
 - name: Webserver check result
   fail: msg="Webserver isn't working properly"
-  when: "'Welcome' not in webserver.content"
+  when: "'nginx' not in webserver.server"
