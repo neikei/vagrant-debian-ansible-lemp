@@ -1,4 +1,12 @@
 ##################################################
+### Restart services for testing
+- name: Restart services for testing
+  service: name={{ item }} state=restarted
+  with_items:
+  - nginx
+  - php{{ php_version }}-fpm
+
+##################################################
 ### Installation tests
 - name: Check Nginx
   shell: 'nginx -v'
