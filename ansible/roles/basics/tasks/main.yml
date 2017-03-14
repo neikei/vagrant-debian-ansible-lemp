@@ -9,8 +9,19 @@
     - wget
     - zip
     - unzip
+    - htop
+    - iotop
+    - postfix
     - apt-transport-https
     - ca-certificates
+
+##################################################
+### Convenience
+- name: Configure inputrc and vimrc for root
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+   - { src: inputrc, dest: /root/.inputrc }
+   - { src: vimrc, dest: /root/.vimrc }
 
 ##################################################
 ### Install and configute ufw firewall
