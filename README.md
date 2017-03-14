@@ -15,14 +15,14 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
  - Symfony 3.2
 
 ## Requirements
-1. Hypervisor
- - Virtualbox >= 5.1.14
- - Parallels >= 10
-2. Vagrant >= 1.9.1
-3. Vagrant Plugins:
- - vagrant-hostmanager  # necessary for host entries
- - vagrant-vbguest      # recommended for virtualbox users
- - vagrant-winnfsd      # only for Windows only
+ - Hypervisor
+   - Virtualbox >= 5.1.14
+   - Parallels >= 10
+ - Vagrant >= 1.9.1
+ - Vagrant Plugins:
+   - vagrant-hostmanager # necessary for host entries
+   - vagrant-vbguest # recommended for virtualbox users
+   - vagrant-winnfsd # only for Windows only
 
 ## Installation
 1. git clone https://github.com/neikei/vagrant-debian-ansible-lemp.git
@@ -38,7 +38,8 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
    - user: admin
    - password: changeme
    - root is allowed to access the database from localhost without a password
- - Default Symfony Path: /vagrant/project
+ - Default Symfony path: /vagrant/project
+   - This path is configured as share to your local machine and should be available after the provisioning in your vagrant-debian-ansible-lemp folder.
 
 ## Advanced configuration
 
@@ -47,7 +48,7 @@ Check the config.yaml if you want to modify public_ip, vmname, servername and pr
 ## Changelog
 14 March 2017
  - Added hostmanger for local hostfile management
- - Improved PHP and Nodejs Installation
+ - Improved PHP, Nginx and Nodejs installation
  - Added Symfony 3.2 compatibility
 
 27 February 2017
