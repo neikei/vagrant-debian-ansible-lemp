@@ -50,7 +50,7 @@ Check the config.yaml if you want to modify public_ip, vmname, servername and pr
 The config.yaml can be used as project switcher.
 
 1. Change the use parameter to match the needed project identifier
-2. Trigger the vagrant provisioning again with 'vagrant reload && vagrant provision'
+2. Re-build the system with the new settings 'vagrant destroy && vagrant up'
 
 ## Changelog
 14 March 2017
