@@ -16,3 +16,10 @@
 
 - name: Link nodejs to node
   file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+
+##################################################
+### Install nodejs plugins
+- name: Install nodejs plugins
+  npm: name="{{ item }}" global=yes
+  with_items:
+    - node-sass
