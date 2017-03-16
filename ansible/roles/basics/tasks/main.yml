@@ -12,6 +12,7 @@
     - htop
     - iotop
     - postfix
+    - debian-goodies
     - apt-transport-https
     - ca-certificates
 

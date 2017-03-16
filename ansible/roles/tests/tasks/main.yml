@@ -15,6 +15,13 @@
 - name: Display result
   debug: msg="{{ test_result.stderr }}"
 
+- name: Check MySQL
+  shell: 'mysql --version'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
 - name: Check PHP
   shell: 'php -v | head -1'
   register: test_result
@@ -54,6 +61,7 @@
 ### Functionality tests
 - name: Webserver check
   action: uri url=http://127.0.0.1/ return_content=yes
+  ignore_errors: yes
   register: webserver
 
 - name: Webserver check result

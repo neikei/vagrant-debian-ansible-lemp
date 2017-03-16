@@ -5,14 +5,16 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
 
 ## Included components
 
- - Debian 8.7
- - Nginx
- - MySQL
- - PHP 7.1
- - PHPUnit
- - Composer
- - nodejs
- - Symfony 3.2
+| Software | Version | Tested   |
+|----------|---------|----------|
+| Debian   | 8.7     | &#10003; |
+| Nginx    | 1.10.3  | &#10003; |
+| MySQL    | 5.5.54  | &#10003; |
+| PHP      | 7.1     | &#10003; |
+| PHPUnit  | 6.0.9   | &#10003; |
+| Composer | 1.4.1   | &#10003; |
+| Node.js  | 6.10.0  | &#10003; |
+| Symfony  | 3.2.4   | &#10003; |
 
 ## Requirements
  - Hypervisor
@@ -53,6 +55,10 @@ The config.yaml can be used as project switcher.
 2. Re-build the system with the new settings 'vagrant destroy && vagrant up'
 
 ## Changelog
+16 March 2017
+ - Node.js installation improvements
+ - Updated Nginx to version 1.10.3 from dotdeb
+
 14 March 2017
  - Added hostmanger for local hostfile management
  - Improved PHP, Nginx and Nodejs installation

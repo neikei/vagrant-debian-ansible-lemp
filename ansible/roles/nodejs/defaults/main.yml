@@ -1,2 +1,3 @@
-nodejs_url: https://deb.nodesource.com/setup_6.x
+nodejs_version: 6 # 6 for LTS version or 7 for developer version
+nodejs_url: https://deb.nodesource.com/setup_{{ nodejs_version }}.x
 nodejs_tmp: /tmp/nodejs_installer

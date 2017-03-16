@@ -90,9 +90,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/playbook.yml"
       ansible.sudo = true
+      ansible.verbose = ""
       ansible.extra_vars = {
         servername: vagrant_config['servername'],
-        projectname: vagrant_config['projectname']
+        projectname: vagrant_config['projectname'],
+        testing_mode: 0
       }
   end
 

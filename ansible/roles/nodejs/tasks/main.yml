@@ -1,13 +1,37 @@
 ##################################################
+### Pre-Checks
+- name: Check if repository is already available
+  shell: 'grep {{ nodejs_version }} /etc/apt/sources.list.d/nodesource.list | wc -l'
+  register: nodejs_repo
+
+- name: Check if any nodejs is installed
+  shell: 'dpkg --list | grep nodejs | grep "^ii" | wc -l'
+  register: nodejs_installed
+
+- name: Check installed version
+  shell: 'nodejs -v | grep v{{ nodejs_version }} | wc -l'
+  register: nodejs_installed_version
+  when: nodejs_installed.stdout != "0"
+
+##################################################
 ### Install nodejs
 - name: Download Installer from Repo
   get_url:
     url="{{ nodejs_url }}"
     dest="{{ nodejs_tmp }}"
     mode=777
+    force=yes
+  when: nodejs_repo.stdout == "0"
 
 - name: Run Installer
   shell: "/bin/bash {{ nodejs_tmp }}"
+  when: nodejs_repo.stdout == "0"
+
+- name: Remove old Nodejs
+  apt: name={{ item }} state=absent
+  with_items:
+    - nodejs
+  when: nodejs_installed.stdout != "0" and nodejs_installed.stdout == "0"
 
 - name: Install Nodejs
   apt: name={{ item }} state=latest

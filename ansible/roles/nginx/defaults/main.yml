@@ -1,0 +1,2 @@
+nginx_repo_key: http://www.dotdeb.org/dotdeb.gpg
+nginx_repo: http://packages.dotdeb.org

@@ -1,13 +1,13 @@
  - hosts: all
    roles:
-    - basics
-    - updates
-    - nginx
-    - php
-    - mysql
-    - nodejs
-    - symfony
-    - tests
+    - { role: basics }
+    - { role: updates }
+    - { role: nginx }
+    - { role: php }
+    - { role: mysql }
+    - { role: nodejs }
+    - { role: symfony }
+    - { role: tests, when: testing_mode == 1 }
    post_tasks:
     - service: name=nginx state=restarted
     - service: name=php{{ php_version }}-fpm state=restarted
