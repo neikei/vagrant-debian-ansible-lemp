@@ -1,0 +1,6 @@
+##################################################
+### Install redis packages
+- name: Install redis packages
+  apt: name={{ item }} state=present
+  with_items:
+    - redis-server

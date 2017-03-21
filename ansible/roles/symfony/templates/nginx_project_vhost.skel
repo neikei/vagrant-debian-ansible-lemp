@@ -1,6 +1,6 @@
 server {
     listen       80;
-    server_name  {{ servername }};
+    server_name  {{ projectname }}.{{ servername }};
     root         /vagrant/{{ projectname }}/web/;
 
     location / {
@@ -15,6 +15,6 @@ server {
         fastcgi_param HTTPS off;
     }
 
-    error_log /var/log/nginx/vagrant_error.log;
-    access_log /var/log/nginx/vagrant_access.log;
+    error_log /var/log/nginx/{{ projectname }}_error.log;
+    access_log /var/log/nginx/{{ projectname }}_access.log;
 }

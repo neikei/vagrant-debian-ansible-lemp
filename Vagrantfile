@@ -5,7 +5,11 @@ require 'yaml'
 
 current_dir    = File.dirname(File.expand_path(__FILE__))
 configs        = YAML.load_file("#{current_dir}/config.yaml")
-vagrant_config = configs['configs'][configs['configs']['use']]
+vagrant_config = configs['configs']
+hosts          = ""
+vagrant_config['projectnames'].each do |project|
+    hosts << project << "." << vagrant_config['servername'] << " "
+end
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
@@ -58,7 +62,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
       vb.gui = false
-      vb.customize ['modifyvm', :id, '--memory', 2048]
+      vb.customize ['modifyvm', :id, '--memory', 4096]
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--name", vagrant_config['vmname']]
   end
@@ -73,9 +77,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
-  config.hostmanager.aliases = vagrant_config['servername']
+  config.hostmanager.aliases = hosts
   config.vm.hostname = vagrant_config['servername']
-  config.vm.network :private_network, ip: vagrant_config['public_ip']
+  config.vm.network :private_network, ip: vagrant_config['private_ip']
 
   # Configure shared folder
   if OS.windows?
@@ -85,17 +89,34 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Run the provisioning
+  ## Install Ansible
   config.vm.provision "shell", path: "ansible/tools/install_ansible_in_Vagrantbox.sh"
 
+  ## Install and configure software
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/playbook.yml"
       ansible.sudo = true
       ansible.verbose = ""
       ansible.extra_vars = {
         servername: vagrant_config['servername'],
-        projectname: vagrant_config['projectname'],
+        projectname: 0,
         testing_mode: 0
       }
+  end
+  
+  ## Configure Symfony projects
+  vagrant_config['projectnames'].each do |project|
+      config.vm.provision "ansible_local" do |ansible|
+          ansible.playbook = "ansible/playbook.yml"
+          ansible.start_at_task = "Download Symfony Installer"
+          ansible.sudo = true
+          ansible.verbose = ""
+          ansible.extra_vars = {
+              servername: vagrant_config['servername'],
+              projectname: project,
+              testing_mode: 0
+          }
+      end
   end
 
 end

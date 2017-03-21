@@ -36,7 +36,7 @@
 
 - name: Copy new virtual hosts file.
   template:
-    src=vagrant
+    src=vagrant.skel
     dest=/etc/nginx/sites-available/vagrant
 
 - name: Enable new virtual hosts file.

@@ -1,7 +1,7 @@
 # Vagrant-Debian-Ansible-LEMP  
 [![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
 
-This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento project](https://github.com/chef/bento).
+This is a development environment for Symfony projects on a Debian based Vagrantbox from the [bento project](https://github.com/chef/bento).
 
 ## Included components
 
@@ -10,9 +10,11 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
 | Debian   | 8.7     | &#10003; |
 | Nginx    | 1.10.3  | &#10003; |
 | MySQL    | 5.5.54  | &#10003; |
+| Redis    | 3.2.8   | &#10003; |
 | PHP      | 7.1     | &#10003; |
 | PHPUnit  | 6.0.9   | &#10003; |
 | Composer | 1.4.1   | &#10003; |
+| Varnish  | 4.0     | &#10003; |
 | Node.js  | 6.10.0  | &#10003; |
 | Symfony  | 3.2.4   | &#10003; |
 
@@ -20,41 +22,59 @@ This is just a simple LEMP setup on a Debian based Vagrantbox from the [bento pr
  - Hypervisor
    - Virtualbox >= 5.1.14
    - Parallels >= 10
- - Vagrant >= 1.9.1
+ - Vagrant >= 1.9.2
  - Vagrant Plugins:
    - vagrant-hostmanager # necessary for host entries
    - vagrant-vbguest # recommended for virtualbox users
    - vagrant-winnfsd # only for Windows
 
-## Installation
+## Getting started
 1. git clone https://github.com/neikei/vagrant-debian-ansible-lemp.git
 2. cd vagrant-debian-ansible-lemp
 3. vagrant up
 4. ... wait ...
-5. Check the initial webpage: http://192.168.56.123 or http://lemp.dev/
+5. Check the initial webpage: http://lemp.test/
 
-## Playground access
+## Default access
 
- - Webserver: http://192.168.56.123 or http://lemp.dev/
- - MySQL: 192.168.56.123:3306
+ - Webserver: http://lemp.test/
+ - Symfony projects: http://example.lemp.test
+ - Default web root: /vagrant/web
+ - Symfony web root: /vagrant/example
+ - MySQL: 192.168.56.111:3306
    - user: admin
    - password: changeme
    - root is allowed to access the database from localhost without a password
- - Default Symfony path: /vagrant/project
-   - This path is configured as share to your local machine and should be available after the provisioning in your vagrant-debian-ansible-lemp folder.
+ - Redis: 127.0.0.1:6379
+ - Varnish: 127.0.0.1:6082
 
-## Advanced configuration
+## Configuration
 
-Check the config.yaml if you want to modify public_ip, vmname, servername and projectname.
+Check the config.yml if you want to modify the following settings.
 
-### Project switcher
+```
+configs:
+    private_ip: "192.168.56.111"    # VM IP in your host-only-network
+    vmname: "symfony-development"   # VM name for Virtualbox or Parallels
+    servername: "lemp.test"         # Servername and domain for your projects
+    projectnames: ["example"]       # Comma-separated list with your projectnames
+```
+Every configuration change needs a re-build of the VM. All manual configuration changes on your VM will be lost, but the Symfony projects are safe.
 
-The config.yaml can be used as project switcher.
+```
+vagrant destroy && vagrant up
+```
 
-1. Change the use parameter to match the needed project identifier
-2. Re-build the system with the new settings 'vagrant destroy && vagrant up'
+## Feedback, Issues and Pull-Requests
+
+Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+21 March 2017
+ - Improved multi-project handling
+ - Added Redis
+ - Added Varnish
+
 16 March 2017
  - Node.js installation improvements
  - Updated Nginx to version 1.10.3 from dotdeb
