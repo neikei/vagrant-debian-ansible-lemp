@@ -57,7 +57,8 @@ configs:
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox or Parallels
     servername: "lemp.test"         # Servername and domain for your projects
-    projectnames: ["foo", "bar"]    # Comma-separated list with your projectnames => foo.lemp.test and bar.lemp.test
+    projectnames: ["foo", "bar"]    # Comma-separated list with your projectnames
+                                    # => foo.lemp.test and bar.lemp.test
 ```
 Every configuration change needs a re-build of the VM to manage the hostnames in your local hostfile. All manual configuration changes on your VM will be lost, but the Symfony projects are safe.
 
