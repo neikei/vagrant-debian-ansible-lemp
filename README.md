@@ -37,9 +37,9 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 
 ## Default access
 
- - Webserver: http://lemp.test/
- - Symfony projects: http://example.lemp.test
+ - Default project: http://lemp.test/
  - Default web root: /vagrant/web
+ - Symfony projects: http://example.lemp.test
  - Symfony web root: /vagrant/example
  - MySQL: 192.168.56.111:3306
    - user: admin
@@ -57,9 +57,9 @@ configs:
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox or Parallels
     servername: "lemp.test"         # Servername and domain for your projects
-    projectnames: ["example"]       # Comma-separated list with your projectnames
+    projectnames: ["foo", "bar"]    # Comma-separated list with your projectnames => foo.lemp.test and bar.lemp.test
 ```
-Every configuration change needs a re-build of the VM. All manual configuration changes on your VM will be lost, but the Symfony projects are safe.
+Every configuration change needs a re-build of the VM to manage the hostnames in your local hostfile. All manual configuration changes on your VM will be lost, but the Symfony projects are safe.
 
 ```
 vagrant destroy && vagrant up
@@ -70,6 +70,9 @@ vagrant destroy && vagrant up
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+31 March 2017
+ - Documentation improvements
+
 21 March 2017
  - Improved multi-project handling
  - Added Redis
