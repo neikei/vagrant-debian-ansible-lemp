@@ -60,10 +60,10 @@ configs:
     projectnames: ["foo", "bar"]    # Comma-separated list with your projectnames
                                     # Generated URLs => foo.lemp.test and bar.lemp.test
 ```
-Every configuration change needs a re-build of the VM to manage the hostnames in your local hostfile. All manual configuration changes on your VM will be lost, but the Symfony projects are safe.
+Every servername change needs an update of your local hostfile.
 
 ```
-vagrant destroy && vagrant up
+vagrant hostmanager
 ```
 
 ## Feedback, Issues and Pull-Requests
