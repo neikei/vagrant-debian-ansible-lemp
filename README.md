@@ -60,7 +60,7 @@ configs:
     projectnames: ["foo", "bar"]    # Comma-separated list with your projectnames
                                     # Generated URLs => foo.lemp.test and bar.lemp.test
 ```
-Every servername change needs an update of your local hostfile.
+Every servername or projectname change needs an update of your local hostfile.
 
 ```
 vagrant hostmanager
@@ -71,6 +71,9 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+02 May 2017
+- Update local hostfile instead of re-build the whole box
+
 31 March 2017
  - Documentation improvements
 
