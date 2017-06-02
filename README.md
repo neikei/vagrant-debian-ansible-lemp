@@ -16,7 +16,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 | Composer | 1.4.1   | &#10003; |
 | Varnish  | 4.0     | &#10003; |
 | Node.js  | 6.10.0  | &#10003; |
-| Symfony  | 3.2.4   | &#10003; |
+| Symfony  | 3.2.8   | &#10003; |
 
 ## Requirements
  - Hypervisor
@@ -71,6 +71,11 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+02 June 2017
+- Improved service start and autostart
+- Updated Readme.md
+- Updated .gitignore
+
 02 May 2017
 - Update local hostfile instead of re-build the whole box
 

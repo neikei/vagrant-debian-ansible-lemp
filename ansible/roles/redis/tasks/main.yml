@@ -4,3 +4,9 @@
   apt: name={{ item }} state=present
   with_items:
     - redis-server
+
+- name: Start Redis and enable the service in autostart
+  service:
+    name: redis-server
+    state: started
+    enabled: yes

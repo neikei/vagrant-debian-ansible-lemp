@@ -70,6 +70,12 @@
   notify:
    - restart php-fpm
 
+- name: Start PHP-FPM and enable the service in autostart
+  service:
+    name: php{{ php_version }}-fpm
+    state: started
+    enabled: yes
+
 ##################################################
 ### Install PHPUnit
 - name: Install PHPUnit

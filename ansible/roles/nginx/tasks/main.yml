@@ -52,3 +52,9 @@
   with_items:
     - 80
     - 443
+
+- name: Start Nginx and enable the service in autostart
+  service:
+    name: nginx
+    state: started
+    enabled: yes
