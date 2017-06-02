@@ -15,6 +15,7 @@
     - debian-goodies
     - apt-transport-https
     - ca-certificates
+    - imagemagick
 
 ##################################################
 ### Convenience

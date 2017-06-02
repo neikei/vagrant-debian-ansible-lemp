@@ -75,6 +75,7 @@ Feel free to report issues, fork this project and submit pull requests.
 - Improved service start and autostart
 - Updated Readme.md
 - Updated .gitignore
+- Added imagemagick
 
 02 May 2017
 - Update local hostfile instead of re-build the whole box
