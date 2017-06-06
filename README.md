@@ -48,6 +48,10 @@ This is a development environment for Symfony projects on a Debian based Vagrant
  - Redis: 127.0.0.1:6379
  - Varnish: 127.0.0.1:6082
 
+## xDebug
+
+xDebug is available on port 9000 from your local machine to debug your application with tools like PHPStorm.
+
 ## Configuration
 
 Check the config.yml if you want to modify the following settings.
@@ -71,6 +75,9 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+06 June 2017
+- Added basic xDebug configuration
+
 02 June 2017
 - Improved service start and autostart
 - Updated Readme.md

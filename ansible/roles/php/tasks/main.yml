@@ -52,6 +52,7 @@
     - php{{ php_version }}-ssh2
     - php{{ php_version }}-xmlrpc
     - php{{ php_version }}-common
+    - php{{ php_version }}-xdebug
   notify:
    - restart php-fpm
    - restart nginx
@@ -67,6 +68,13 @@
     regexp='^;date.timezone'
     line='date.timezone = "Europe/Berlin"'
     backrefs=yes
+  notify:
+   - restart php-fpm
+
+- name: Configure XDebug
+  template:
+    src=20-xdebug.ini
+    dest=/etc/php/{{ php_version }}/cli/conf.d/20-xdebug.ini
   notify:
    - restart php-fpm
 
