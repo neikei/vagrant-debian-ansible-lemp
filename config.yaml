@@ -3,3 +3,4 @@ configs:
     vmname: "symfony-development"   # VM name for Virtualbox or Parallels
     servername: "lemp.test"         # Servername and domain for your projects
     projectnames: ["example"]       # Comma-separated list with your projectnames
+    symfony_version: 3.3            # Symfony version like 3.3 or "lts"

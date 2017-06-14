@@ -16,7 +16,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 | Composer | 1.4.1   | &#10003; |
 | Varnish  | 4.0     | &#10003; |
 | Node.js  | 6.10.0  | &#10003; |
-| Symfony  | 3.2.8   | &#10003; |
+| Symfony  | 3.3.2   | &#10003; |
 
 ## Requirements
  - Hypervisor
@@ -63,6 +63,7 @@ configs:
     servername: "lemp.test"         # Servername and domain for your projects
     projectnames: ["foo", "bar"]    # Comma-separated list with your projectnames
                                     # Generated URLs => foo.lemp.test and bar.lemp.test
+    symfony_version: 3.3            # Symfony version like 3.3 or "lts"
 ```
 Every servername or projectname change needs an update of your local hostfile.
 
@@ -75,6 +76,9 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+14 June 2017
+- Configurable symfony version
+
 06 June 2017
 - Added basic xDebug configuration
 

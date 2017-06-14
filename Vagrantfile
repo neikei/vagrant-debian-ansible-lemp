@@ -100,7 +100,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.extra_vars = {
         servername: vagrant_config['servername'],
         projectname: 0,
-        testing_mode: 0
+        testing_mode: 0,
+        symfony_version: 0
       }
   end
   
@@ -114,7 +115,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           ansible.extra_vars = {
               servername: vagrant_config['servername'],
               projectname: project,
-              testing_mode: 0
+              testing_mode: 0, 
+              symfony_version: vagrant_config['symfony_version']
           }
       end
   end

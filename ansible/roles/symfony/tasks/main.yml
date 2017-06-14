@@ -13,7 +13,7 @@
   register: stat_project
 
 - name: Create project
-  shell: cd /vagrant && symfony new {{ projectname }}
+  shell: cd /vagrant && symfony new {{ projectname }} {{ symfony_version }}
   when: stat_project.stat.exists == false
 
 ##################################################
