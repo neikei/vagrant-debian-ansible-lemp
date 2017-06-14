@@ -78,6 +78,7 @@ Feel free to report issues, fork this project and submit pull requests.
 ## Changelog
 14 June 2017
 - Configurable symfony version
+- Improved service start after vagrant up
 
 06 June 2017
 - Added basic xDebug configuration

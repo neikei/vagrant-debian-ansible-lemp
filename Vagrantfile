@@ -121,4 +121,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
   end
 
+  ## Ensure PHP-FPM and Nginx restart after vagrant up
+  config.vm.provision "shell", inline: "service php7.1-fpm restart && service nginx restart", run: "always"
+
 end
