@@ -7,7 +7,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 
 | Software | Version | Tested   |
 |----------|---------|----------|
-| Debian   | 8.7     | &#10003; |
+| Debian   | 8.8     | &#10003; |
 | Nginx    | 1.10.3  | &#10003; |
 | MySQL    | 5.5.54  | &#10003; |
 | Redis    | 3.2.8   | &#10003; |
@@ -76,6 +76,9 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+28 June 2017
+ - Updated Debian to version 8.8
+
 14 June 2017
 - Configurable symfony version
 - Improved service start after vagrant up
