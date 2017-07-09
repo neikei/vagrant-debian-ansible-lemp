@@ -71,10 +71,10 @@
   notify:
    - restart php-fpm
 
-- name: Configure XDebug
+- name: Configure xDebug
   template:
     src=20-xdebug.ini
-    dest=/etc/php/{{ php_version }}/cli/conf.d/20-xdebug.ini
+    dest=/etc/php/{{ php_version }}/fpm/conf.d/20-xdebug.ini
   notify:
    - restart php-fpm
 

@@ -76,6 +76,9 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+09 July 2017
+ - xDebug configuration improvements
+
 28 June 2017
  - Updated Debian to version 8.8
 
