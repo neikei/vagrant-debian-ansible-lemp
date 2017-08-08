@@ -1,22 +1,23 @@
 # Vagrant-Debian-Ansible-LEMP  
 [![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
 
-This is a development environment for Symfony projects on a Debian based Vagrantbox from the [bento project](https://github.com/chef/bento).
+This is a development environment for Symfony projects on a Debian based Vagrantbox.
 
 ## Included components
 
-| Software | Version | Tested   |
-|----------|---------|----------|
-| Debian   | 8.8     | &#10003; |
-| Nginx    | 1.10.3  | &#10003; |
-| MySQL    | 5.5.54  | &#10003; |
-| Redis    | 3.2.8   | &#10003; |
-| PHP      | 7.1     | &#10003; |
-| PHPUnit  | 6.0.9   | &#10003; |
-| Composer | 1.4.1   | &#10003; |
-| Varnish  | 4.0     | &#10003; |
-| Node.js  | 6.10.0  | &#10003; |
-| Symfony  | 3.3.2   | &#10003; |
+| Software | Debian Jessie | Debian Stretch | Tested   |
+|----------|---------------|----------------|----------|
+| Debian   | 8.9           | 9.1            | &#10003; |
+| Nginx    | 1.12.1        | 1.10.3         | &#10003; |
+| MySQL    | 5.5.57        | &#65794;       | &#10003; |
+| MariDB   | &#65794;      | 10.1.23        | &#10003; |
+| Redis    | 3.2.10        | 3.2.6          | &#10003; |
+| PHP      | 7.1           | 7.1            | &#10003; |
+| PHPUnit  | 6.3.0         | 6.3.0          | &#10003; |
+| Composer | 1.5.0         | 1.5.0          | &#10003; |
+| Varnish  | 4.0.2         | 5.0.0          | &#10003; |
+| Node.js  | 6.11.2        | 6.11.2         | &#10003; |
+| Symfony  | 3.3.6         | 3.3.6          | &#10003; |
 
 ## Requirements
  - Hypervisor
@@ -48,6 +49,20 @@ This is a development environment for Symfony projects on a Debian based Vagrant
  - Redis: 127.0.0.1:6379
  - Varnish: 127.0.0.1:6082
 
+## Symfony Debugging
+
+The app_dev.php file of your application has to allow the first IP of the configured network. In the config.yaml example you have to allow the IP '192.168.56.1' in your app_dev.php to use http://example.lemp.test/app_dev.php for debugging.
+
+```php
+if (isset($_SERVER['HTTP_CLIENT_IP'])
+    || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+    || !(in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '192.168.56.1'], true) || PHP_SAPI === 'cli-server')
+) {
+    header('HTTP/1.0 403 Forbidden');
+    exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
+}
+```
+
 ## xDebug
 
 xDebug is available on port 9000 from your local machine to debug your application with tools like PHPStorm.
@@ -56,8 +71,9 @@ xDebug is available on port 9000 from your local machine to debug your applicati
 
 Check the config.yml if you want to modify the following settings.
 
-```
+```yaml
 configs:
+    os: stretch                     # Choose between jessie and stretch
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox or Parallels
     servername: "lemp.test"         # Servername and domain for your projects
@@ -65,9 +81,10 @@ configs:
                                     # Generated URLs => foo.lemp.test and bar.lemp.test
     symfony_version: 3.3            # Symfony version like 3.3 or "lts"
 ```
+
 Every servername or projectname change needs an update of your local hostfile.
 
-```
+```bash
 vagrant hostmanager
 ```
 
@@ -76,6 +93,11 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+08 August 2017
+ - Modifications for Debian Stretch
+ - Added os switcher to the config.yaml
+ - Updated Readme.md
+
 09 July 2017
  - xDebug configuration improvements
  - Added check of minimum Vagrant version

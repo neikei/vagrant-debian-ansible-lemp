@@ -50,6 +50,13 @@
 - name: Display result
   debug: msg="{{ test_result.stdout }}"
 
+- name: Check varnish
+  shell: 'dpkg -l | grep "ii  varnish"'
+  register: test_result
+
+- name: Display result
+  debug: msg="{{ test_result.stdout }}"
+
 - name: Check nodejs
   shell: 'nodejs -v'
   register: test_result

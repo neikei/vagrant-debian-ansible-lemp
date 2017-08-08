@@ -1,7 +1,42 @@
 ##################################################
+### Special stuff to identify Vagrantboxes
+- name: Check if Server is Vagrantbox
+  shell: 'grep vagrant /etc/passwd | wc -l'
+  check_mode: no
+  changed_when: false
+  register: vagrantbox
+
+##################################################
 ### Update Debian
-- name: Update Debian
+- name: Install aptitude and needrestart
+  apt: name={{ item }} state=latest update_cache=yes
+  check_mode: no
+  with_items:
+    - aptitude
+    - needrestart
+
+- name: Update Debian / aptitude safe-upgrade
   apt:
-    upgrade: dist
+    upgrade: safe
     update_cache: yes
     dpkg_options: 'force-confold,force-confdef'
+
+- name: Check Required Restart
+  shell: '/usr/sbin/needrestart -b | grep "NEEDRESTART-KSTA: 1" | wc -l'
+  check_mode: no
+  changed_when: false
+  register: reboot_required
+
+- name: Inform about required reboot
+  mail:
+    from: sender@report.test
+    to: recipient@report.test
+    subject: 'Info: {{ inventory_hostname }} requires reboot'
+    body: 'Please reboot {{ inventory_hostname }}'
+  when: reboot_required.stdout != "1" and vagrantbox.stdout == "0"
+
+#The kernel status (`NEEDRESTART-KSTA`) value has the following meaning:
+#- *0*: unknown or failed to detect
+#- *1*: no pending upgrade
+#- *2*: ABI compatible upgrade pending
+#- *3*: version upgrade pending
