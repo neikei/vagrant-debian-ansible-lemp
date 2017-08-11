@@ -1,4 +1,12 @@
 ##################################################
+### Special stuff to identify Vagrantboxes
+- name: Check if Server is Vagrantbox
+  shell: 'grep vagrant /etc/passwd | wc -l'
+  check_mode: no
+  changed_when: false
+  register: vagrantbox
+
+##################################################
 ### Install and configure webserver
 - name: Add apt key for Debian
   apt_key: url={{ nginx_repo_key }} state=present
@@ -35,6 +43,7 @@
     regexp='^user www-data'
     line='user vagrant;'
     backrefs=yes
+  when: vagrantbox.stdout != "0"
 
 - name: Copy new virtual hosts file.
   template:
