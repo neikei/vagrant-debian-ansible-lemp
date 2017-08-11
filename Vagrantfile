@@ -10,7 +10,7 @@ hosts          = ""
 vagrant_config['projectnames'].each do |project|
     hosts << project << "." << vagrant_config['servername'] << " "
 end
-os             = "debian/" + vagrant_config['os'] + "64"
+os             = "bento/debian-" + vagrant_config['os'] #"debian/" + vagrant_config['os'] + "64"
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
