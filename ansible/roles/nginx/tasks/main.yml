@@ -1,13 +1,23 @@
 ##################################################
+### Special stuff to identify Vagrantboxes
+- name: Check if Server is Vagrantbox
+  shell: 'grep vagrant /etc/passwd | wc -l'
+  check_mode: no
+  changed_when: false
+  register: vagrantbox
+
+##################################################
 ### Install and configure webserver
 - name: Add apt key for Debian
   apt_key: url={{ nginx_repo_key }} state=present
+  when: ansible_distribution_major_version == "8"
 
 - name: Add repository for Debian
   apt_repository: repo="{{ item }} {{ nginx_repo }} {{ ansible_distribution_release }} all" state=present update_cache=yes
   with_items:
     - deb
     - deb-src
+  when: ansible_distribution_major_version == "8"
 
 - name: Set up webserver
   apt: name=nginx state=latest
@@ -33,6 +43,7 @@
     regexp='^user www-data'
     line='user vagrant;'
     backrefs=yes
+  when: vagrantbox.stdout != "0"
 
 - name: Copy new virtual hosts file.
   template:

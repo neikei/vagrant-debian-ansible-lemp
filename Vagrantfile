@@ -10,12 +10,13 @@ hosts          = ""
 vagrant_config['projectnames'].each do |project|
     hosts << project << "." << vagrant_config['servername'] << " "
 end
+os             = "bento/debian-" + vagrant_config['os'] #"debian/" + vagrant_config['os'] + "64"
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
 # Check minimum Vagrant version
-Vagrant.require_version ">= 1.9.2"
+Vagrant.require_version ">= 1.9.7"
 
 # Detect host OS for different folder share configuration
 module OS
@@ -41,7 +42,7 @@ end
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "bento/debian-8.8"
+  config.vm.box = os
 
   config.vm.provider "parallels"
   config.vm.provider "virtualbox"
@@ -103,8 +104,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.extra_vars = {
         servername: vagrant_config['servername'],
         projectname: 0,
-        testing_mode: 0,
-        symfony_version: 0
+        testing_mode: 0, # 0 = skip this part // 1 = show installed software versions
+        symfony_version: 0,
+        ansible_host: vagrant_config['private_ip']
       }
   end
   
@@ -119,7 +121,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
               servername: vagrant_config['servername'],
               projectname: project,
               testing_mode: 0, 
-              symfony_version: vagrant_config['symfony_version']
+              symfony_version: vagrant_config['symfony_version'],
+              ansible_host: vagrant_config['private_ip']
           }
       end
   end
