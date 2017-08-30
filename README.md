@@ -73,11 +73,11 @@ Check the config.yml if you want to modify the following settings.
 
 ```yaml
 configs:
-    os: "9.1"                       # Choose between 8.8 and 9.0
+    os: "9.1"                       # Choose between 8.9 and 9.1 (change requires: vagrant destroy & vagrant up)
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
-    vmname: "symfony-development"   # VM name for Virtualbox or Parallels
+    vmname: "symfony-development"   # VM name for Virtualbox
     servername: "lemp.test"         # Servername and domain for your projects
-    projectnames: ["foo","bar"]       # Comma-separated list with your projectnames
+    projectnames: ["foo","bar"]     # Comma-separated list with your projectnames
                                     # Generated URLs => foo.lemp.test and bar.lemp.test
     symfony_version: 3.3            # Symfony version like 3.3 or "lts"
 ```
