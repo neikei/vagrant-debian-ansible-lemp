@@ -13,3 +13,7 @@ elif [ $ansible_installed -eq 0 ] && [[ $debian_version =~ ^9.*$ ]]; then
 else
   echo "Ansible is already installed."
 fi
+
+echo "==> Ansible version <=="
+ansible --version
+echo "==> Ansible version <=="
