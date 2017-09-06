@@ -9,17 +9,15 @@
 ##################################################
 ### Install and configure webserver
 - name: Add apt key for Debian
-  apt_key: url={{ nginx_repo_key }} state=present
-  when: ansible_distribution_major_version == "8"
+  apt_key: url="https://nginx.org/keys/nginx_signing.key" state=present
 
 - name: Add repository for Debian
-  apt_repository: repo="{{ item }} {{ nginx_repo }} {{ ansible_distribution_release }} all" state=present update_cache=yes
+  apt_repository: repo="{{ item }} http://nginx.org/packages/debian/ {{ ansible_distribution_release }} nginx" state=present update_cache=yes
   with_items:
     - deb
     - deb-src
-  when: ansible_distribution_major_version == "8"
 
-- name: Set up webserver
+- name: Install webserver
   apt: name=nginx state=latest
 
 - name: Create folders

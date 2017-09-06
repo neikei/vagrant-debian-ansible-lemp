@@ -38,9 +38,6 @@
   with_items:
     - nodejs
 
-- name: Link nodejs to node
-  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
-
 ##################################################
 ### Install nodejs plugins
 - name: Install nodejs plugins

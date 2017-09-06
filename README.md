@@ -8,7 +8,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 | Software | Debian Jessie | Debian Stretch | Tested   |
 |----------|---------------|----------------|----------|
 | Debian   | 8.9           | 9.1            | &#10003; |
-| Nginx    | 1.12.1        | 1.10.3         | &#10003; |
+| Nginx    | 1.12.1        | 1.12.1         | &#10003; |
 | MySQL    | 5.5.57        | &#65794;       | &#10003; |
 | MariDB   | &#65794;      | 10.1.26        | &#10003; |
 | Redis    | 3.2.10        | 3.2.6          | &#10003; |
@@ -16,7 +16,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 | PHPUnit  | 6.3.0         | 6.3.0          | &#10003; |
 | Composer | 1.5.1         | 1.5.1          | &#10003; |
 | Varnish  | 4.0.2         | 5.0.0          | &#10003; |
-| Node.js  | 6.11.2        | 6.11.2         | &#10003; |
+| Node.js  | 6.11.3        | 6.11.3         | &#10003; |
 | Symfony  | 3.3.6         | 3.3.6          | &#10003; |
 
 ## Requirements
@@ -93,6 +93,11 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+06 September 2017
+
+- Changed Nginx installation source to the official repository
+- Fixed Nodejs installation
 
 30 August 2017
 
