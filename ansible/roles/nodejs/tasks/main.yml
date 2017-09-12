@@ -44,3 +44,5 @@
   npm: name="{{ item }}" global=yes
   with_items:
     - node-sass
+    - uglify-js
+    - eslint
