@@ -94,6 +94,10 @@ Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
 
+04 October 2017
+
+- Fixed Nginx vhost include configuration
+
 06 September 2017
 
 - Changed Nginx installation source to the official repository

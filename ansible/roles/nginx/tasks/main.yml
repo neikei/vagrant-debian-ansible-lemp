@@ -1,12 +1,4 @@
 ##################################################
-### Special stuff to identify Vagrantboxes
-- name: Check if Server is Vagrantbox
-  shell: 'grep vagrant /etc/passwd | wc -l'
-  check_mode: no
-  changed_when: false
-  register: vagrantbox
-
-##################################################
 ### Install and configure webserver
 - name: Add apt key for Debian
   apt_key: url="https://nginx.org/keys/nginx_signing.key" state=present
@@ -28,20 +20,10 @@
     - { path: "/var/lib/nginx", mode: 777, user: vagrant, group: root }
     - { path: "/var/lib/nginx/tmp", mode: 777, user: vagrant, group: root }
 
-- name: Disable default virtual hosts file.
-  file:
-    path=/etc/nginx/sites-enabled/default
-    state=absent
-  notify:
-   - restart nginx
-
-- name: Configure vagrant as nginx user
-  lineinfile:
+- name: Copy nginx.conf
+  template:
+    src=nginx.conf
     dest=/etc/nginx/nginx.conf
-    regexp='^user www-data'
-    line='user vagrant;'
-    backrefs=yes
-  when: vagrantbox.stdout != "0"
 
 - name: Copy new virtual hosts file.
   template:
