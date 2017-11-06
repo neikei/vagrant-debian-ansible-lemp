@@ -1,6 +1,0 @@
-##################################################
-### Install varnish packages
-- name: Install varnish packages
-  apt: name={{ item }} state=present
-  with_items:
-    - varnish

@@ -7,23 +7,22 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 
 | Software | Debian Jessie | Debian Stretch | Tested   |
 |----------|---------------|----------------|----------|
-| Debian   | 8.9           | 9.1            | &#10003; |
-| Nginx    | 1.12.1        | 1.12.1         | &#10003; |
-| MySQL    | 5.5.57        | &#65794;       | &#10003; |
+| Debian   | 8.9           | 9.2            | &#10003; |
+| Nginx    | 1.12.2        | 1.12.2         | &#10003; |
+| MySQL    | 5.5.58        | &#65794;       | &#10003; |
 | MariDB   | &#65794;      | 10.1.26        | &#10003; |
-| Redis    | 3.2.10        | 3.2.6          | &#10003; |
+| Redis    | 2.8.17        | 3.2.6          | &#10003; |
 | PHP      | 7.1           | 7.1            | &#10003; |
-| PHPUnit  | 6.3.0         | 6.3.0          | &#10003; |
-| Composer | 1.5.1         | 1.5.1          | &#10003; |
-| Varnish  | 4.0.2         | 5.0.0          | &#10003; |
-| Node.js  | 6.11.3        | 6.11.3         | &#10003; |
-| Symfony  | 3.3.6         | 3.3.6          | &#10003; |
+| PHPUnit  | 6.4.3         | 6.4.3          | &#10003; |
+| Composer | 1.5.2         | 1.5.2          | &#10003; |
+| Node.js  | 6.11.5        | 6.11.5         | &#10003; |
+| Symfony  | 3.3.10        | 3.3.10         | &#10003; |
 
 ## Requirements
  - Hypervisor
-   - Virtualbox >= 5.1.26
+   - Virtualbox >= 5.1.30
    - Parallels >= 10
- - Vagrant >= 1.9.7
+ - Vagrant = 1.9.7
  - Vagrant Plugins:
    - vagrant-hostmanager # necessary for host entries
    - vagrant-vbguest # recommended for virtualbox users
@@ -47,7 +46,6 @@ This is a development environment for Symfony projects on a Debian based Vagrant
    - password: changeme
    - root is allowed to access the database from localhost without a password
  - Redis: 127.0.0.1:6379
- - Varnish: 127.0.0.1:6082
 
 ## Symfony Debugging
 
@@ -93,6 +91,11 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+06 November 2017
+
+- Removed Varnish
+- Updated Debian to version 9.2
 
 04 October 2017
 

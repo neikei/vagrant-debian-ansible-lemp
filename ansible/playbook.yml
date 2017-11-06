@@ -4,7 +4,6 @@
     - { role: updates }
     - { role: nginx }
     - { role: php }
-    - { role: varnish }
     - { role: mysql }
     - { role: redis }
     - { role: nodejs }
