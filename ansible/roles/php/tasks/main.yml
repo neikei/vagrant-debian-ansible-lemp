@@ -44,6 +44,7 @@
     - php{{ php_version }}-igbinary
     - php{{ php_version }}-bcmath
     - php{{ php_version }}-imagick
+    - php{{ php_version }}-memcache
     - php{{ php_version }}-memcached
     - php{{ php_version }}-mongodb
     - php{{ php_version }}-msgpack
@@ -53,6 +54,7 @@
     - php{{ php_version }}-xmlrpc
     - php{{ php_version }}-common
     - php{{ php_version }}-xdebug
+    - php{{ php_version }}-apcu
   notify:
    - restart php-fpm
    - restart nginx
