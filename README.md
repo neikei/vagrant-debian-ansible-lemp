@@ -92,6 +92,12 @@ Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
 
+07 November 2017
+
+- Added php-apcu and php-memcache packages
+- Improved Ansible installation
+- Hardcoded Ansible version to 2.4.1.0
+
 06 November 2017
 
 - Removed Varnish
