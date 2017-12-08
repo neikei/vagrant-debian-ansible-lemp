@@ -31,7 +31,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 ## Getting started
 1. git clone https://github.com/neikei/vagrant-debian-ansible-lemp.git
 2. cd vagrant-debian-ansible-lemp
-3. vagrant up
+3. vagrant up --provider=virtualbox OR vagrant up --provider=parallels
 4. ... wait ...
 5. Check the initial webpage: http://lemp.test/
 
@@ -91,6 +91,10 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+08 December 2017
+
+- Documentation improvements
 
 30 November 2017
 
