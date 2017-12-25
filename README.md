@@ -9,26 +9,28 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 |----------|---------------|----------------|----------|
 | Debian   | 8.9           | 9.2            | &#10003; |
 | Nginx    | 1.12.2        | 1.12.2         | &#10003; |
-| MySQL    | 5.5.58        | &#65794;       | &#10003; |
-| MariDB   | &#65794;      | 10.1.26        | &#10003; |
+| MySQL    | 5.5.58        | -              | &#10003; |
+| MariaDB  | -             | 10.1.26        | &#10003; |
 | Redis    | 2.8.17        | 3.2.6          | &#10003; |
 | PHP      | 7.1           | 7.1            | &#10003; |
 | PHPUnit  | 6.4.3         | 6.4.3          | &#10003; |
 | Composer | 1.5.2         | 1.5.2          | &#10003; |
 | Node.js  | 6.11.5        | 6.11.5         | &#10003; |
-| Symfony  | 3.3.10        | 3.3.10         | &#10003; |
+| Symfony  | 3.3.14        | 3.3.14         | &#10003; |
 
 ## Requirements
- - Hypervisor
-   - Virtualbox >= 5.1.30
-   - Parallels >= 10
- - Vagrant = 1.9.7
- - Vagrant Plugins:
-   - vagrant-hostmanager # necessary for host entries
-   - vagrant-vbguest # recommended for virtualbox users
-   - vagrant-winnfsd # only for Windows
+
+- Hypervisor
+  - Virtualbox >= 5.2.4
+  - Parallels >= 10
+- Vagrant >= 2.0.1
+- Vagrant Plugins:
+  - vagrant-hostmanager # necessary for host entries
+  - vagrant-vbguest # recommended for virtualbox users
+  - vagrant-winnfsd # only for Windows
 
 ## Getting started
+
 1. git clone https://github.com/neikei/vagrant-debian-ansible-lemp.git
 2. cd vagrant-debian-ansible-lemp
 3. vagrant up --provider=virtualbox OR vagrant up --provider=parallels
@@ -37,15 +39,15 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 
 ## Default access
 
- - Default project: http://lemp.test/
- - Default web root: /vagrant/web
- - Symfony projects: http://example.lemp.test
- - Symfony web root: /vagrant/example
- - MySQL: 192.168.56.111:3306
-   - user: admin
-   - password: changeme
-   - root is allowed to access the database from localhost without a password
- - Redis: 127.0.0.1:6379
+- Default project: http://lemp.test/
+- Default web root: /vagrant/web
+- Symfony projects: http://example.lemp.test
+- Symfony web root: /vagrant/example
+- MySQL: 192.168.56.111:3306
+  - user: admin
+  - password: changeme
+  - root is allowed to access the database from localhost without a password
+- Redis: 127.0.0.1:6379
 
 ## Symfony Debugging
 
@@ -91,6 +93,11 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+25 December 2017
+
+- Updated Vagrant version to 2.0.1
+- Documentation improvements
 
 08 December 2017
 

@@ -16,7 +16,7 @@ os             = "bento/debian-" + vagrant_config['os'] #"debian/" + vagrant_con
 VAGRANTFILE_API_VERSION = "2"
 
 # Check minimum Vagrant version
-Vagrant.require_version ">= 1.9.7"
+Vagrant.require_version ">= 2.0.1"
 
 # Detect host OS for different folder share configuration
 module OS
@@ -99,7 +99,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## Install and configure software
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/playbook.yml"
-      ansible.sudo = true
+      ansible.become = true
       ansible.verbose = ""
       ansible.extra_vars = {
         servername: vagrant_config['servername'],
@@ -115,7 +115,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.provision "ansible_local" do |ansible|
           ansible.playbook = "ansible/playbook.yml"
           ansible.start_at_task = "Download Symfony Installer"
-          ansible.sudo = true
+          ansible.become = true
           ansible.verbose = ""
           ansible.extra_vars = {
               servername: vagrant_config['servername'],
