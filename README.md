@@ -7,7 +7,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 
 | Software | Debian Jessie | Debian Stretch | Tested   |
 |----------|---------------|----------------|----------|
-| Debian   | 8.9           | 9.2            | &#10003; |
+| Debian   | 8.10          | 9.3            | &#10003; |
 | Nginx    | 1.12.2        | 1.12.2         | &#10003; |
 | MySQL    | 5.5.58        | -              | &#10003; |
 | MariaDB  | -             | 10.1.26        | &#10003; |
@@ -73,7 +73,7 @@ Check the config.yml if you want to modify the following settings.
 
 ```yaml
 configs:
-    os: "9.1"                       # Choose between 8.9 and 9.1 (change requires: vagrant destroy & vagrant up)
+    os: "9.3"                       # Choose between 8.10 and 9.3 (change requires: vagrant destroy & vagrant up)
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox
     servername: "lemp.test"         # Servername and domain for your projects
@@ -93,6 +93,10 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+26 January 2018
+
+- Updated Debian version to 9.3 and 8.10
 
 25 December 2017
 
