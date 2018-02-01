@@ -9,11 +9,11 @@ if [ $ansible_installed -eq 0 ]; then
     sudo apt install -y dirmngr
   fi
 
-  # Add ansible repository, install ansible 2.4.2.0 and set it on hold
+  # Add ansible repository, install ansible 2.4.3.0 and set it on hold
   echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu xenial main" >> /etc/apt/sources.list.d/ansible.list
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
   sudo apt update -y
-  sudo apt install -y ansible=2.4.2.0-1ppa~xenial
+  sudo apt install -y ansible=2.4.3.0-1ppa~xenial
   sudo apt-mark hold ansible
 
 else
