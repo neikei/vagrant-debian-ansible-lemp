@@ -50,7 +50,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
   - root is allowed to access the database from localhost without a password
 - Redis: 127.0.0.1:6379
 
-## Symfony Debugging
+## Symfony3 Debugging
 
 The app_dev.php file of your application has to allow the first IP of the configured network. In the config.yaml example you have to allow the IP '192.168.56.1' in your app_dev.php to use http://example.lemp.test/app_dev.php for debugging.
 
