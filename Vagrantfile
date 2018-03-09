@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
       vb.gui = false
-      vb.customize ['modifyvm', :id, '--memory', 4096]
+      vb.customize ['modifyvm', :id, '--memory', 2048]
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--name", vagrant_config['vmname']]
   end
@@ -114,7 +114,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   vagrant_config['projectnames'].each do |project|
       config.vm.provision "ansible_local" do |ansible|
           ansible.playbook = "ansible/playbook.yml"
-          ansible.start_at_task = "Download Symfony Installer"
+          ansible.start_at_task = "Start project creation"
           ansible.become = true
           ansible.verbose = ""
           ansible.extra_vars = {
@@ -128,6 +128,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ## Ensure PHP-FPM and Nginx restart after vagrant up
-  config.vm.provision "shell", inline: "service php7.1-fpm restart && service nginx restart", run: "always"
+  config.vm.provision "shell", inline: "service php7.2-fpm restart && service nginx restart", run: "always"
 
 end

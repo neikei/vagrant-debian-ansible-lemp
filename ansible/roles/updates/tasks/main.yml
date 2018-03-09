@@ -9,7 +9,10 @@
 ##################################################
 ### Update Debian
 - name: Install aptitude and needrestart
-  apt: name={{ item }} state=latest update_cache=yes
+  apt: 
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
   check_mode: no
   with_items:
     - aptitude

@@ -3,5 +3,6 @@ configs:
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox
     servername: "lemp.test"         # Servername and domain for your projects
-    projectnames: ["example"]       # Comma-separated list with your projectnames
-    symfony_version: 3.3            # Symfony version like 3.3 or "lts"
+    projectnames:                   # Comma-separated list with your symfony projectnames (change requires: vagrant provision & vagrant hostmanager)
+      - example
+    symfony_version: 4.0            # Symfony version like 4.0 or 3.4

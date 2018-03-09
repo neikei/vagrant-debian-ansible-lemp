@@ -1,22 +1,32 @@
 ##################################################
 ### Install and configure MySQL
 - name: Install Packages
-  apt:  name={{ item }} state=installed
+  apt:  
+    name: "{{ item }}"
+    state: installed
   with_items:
   - mysql-server
   - python-mysqldb
 
 - name: User Creation
-  mysql_user: name={{ mysql_user }} host=% password={{ mysql_pw }} priv=*.*:ALL state=present
+  mysql_user: 
+    name: "{{ mysql_user }}"
+    host: "%"
+    password: "{{ mysql_pw }}"
+    priv: "*.*:ALL"
+    state: present
 
 - name: my.cnf configuration
-  ini_file: dest=/etc/mysql/my.cnf
-            section=mysqld
-            option=bind-address
-            value=*
+  ini_file: 
+    dest: /etc/mysql/my.cnf
+    section: "mysqld"
+    option: "bind-address"
+    value: "*"
   notify: restart mysql
 
 - name: Allow Ports
-  ufw: rule=allow port={{ item }}
+  ufw: 
+    rule: allow
+    port: "{{ item }}"
   with_items:
     - 3306

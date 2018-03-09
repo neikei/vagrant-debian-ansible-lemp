@@ -10,5 +10,9 @@
     - { role: tests, when: testing_mode == 1 }
     - { role: symfony, when: projectname != 0 }
    post_tasks:
-    - service: name=nginx state=restarted
-    - service: name=php{{ php_version }}-fpm state=restarted
+    - service: 
+        name: nginx
+        state: restarted
+    - service:
+        name: "php{{ php_version }}-fpm"
+        state: restarted

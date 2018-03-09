@@ -1,19 +1,31 @@
 ##################################################
 ### Install and configure webserver
 - name: Add apt key for Debian
-  apt_key: url="https://nginx.org/keys/nginx_signing.key" state=present
+  apt_key: 
+    url: "https://nginx.org/keys/nginx_signing.key"
+    state: present
 
 - name: Add repository for Debian
-  apt_repository: repo="{{ item }} http://nginx.org/packages/debian/ {{ ansible_distribution_release }} nginx" state=present update_cache=yes
+  apt_repository: 
+    repo: "{{ item }} http://nginx.org/packages/debian/ {{ ansible_distribution_release }} nginx"
+    state: present
+    update_cache: yes
   with_items:
     - deb
     - deb-src
 
 - name: Install webserver
-  apt: name=nginx state=latest
+  apt:
+    name: nginx
+    state: latest
 
 - name: Create folders
-  file: path={{ item.path }} mode={{ item.mode }} state=directory owner={{ item.user }} group={{ item.group }}
+  file:
+    path: "{{ item.path }}"
+    mode: "{{ item.mode }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
+    state: directory
   with_items:
     - { path: "/etc/nginx/sites-available", mode: 755, user: root, group: root }
     - { path: "/etc/nginx/sites-enabled", mode: 755, user: root, group: root }
@@ -22,24 +34,26 @@
 
 - name: Copy nginx.conf
   template:
-    src=nginx.conf
-    dest=/etc/nginx/nginx.conf
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
 
 - name: Copy new virtual hosts file.
   template:
-    src=vagrant.skel
-    dest=/etc/nginx/sites-available/vagrant
+    src: vagrant.skel
+    dest: /etc/nginx/sites-available/vagrant
 
 - name: Enable new virtual hosts file.
   file:
-    src=/etc/nginx/sites-available/vagrant
-    dest=/etc/nginx/sites-enabled/vagrant
-    state=link
+    src: /etc/nginx/sites-available/vagrant
+    dest: /etc/nginx/sites-enabled/vagrant
+    state: link
   notify:
    - restart nginx
 
 - name: Allow Ports
-  ufw: rule=allow port={{ item }}
+  ufw:
+    rule: allow
+    port: "{{ item }}"
   with_items:
     - 80
     - 443

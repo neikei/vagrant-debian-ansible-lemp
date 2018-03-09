@@ -2,32 +2,81 @@
 ### Install symfony
 - name: Download Symfony Installer
   get_url:
-    url="{{ symfony_url }}"
-    dest="{{ symfony_dest }}"
-    mode=777
+    url: "{{ symfony_url }}"
+    dest: "{{ symfony_dest }}"
+    mode: 777
 
 ##################################################
 ### Configure symfony project
+- name: Start project creation
+  debug: 
+    msg: "{{ projectname }}"
+
+- set_fact: 
+    symfony_major_version: "{{ symfony_version | int }}"
+
 - name: Check if project already exists
-  stat: path="/vagrant/{{ projectname }}"
+  stat:
+    path: "/vagrant/{{ projectname }}"
   register: stat_project
 
-- name: Create project
-  shell: cd /vagrant && symfony new {{ projectname }} {{ symfony_version }}
+- name: Create project directory
+  file:
+    path: "/vagrant/{{ projectname }}"
+    state: directory
+  become_user: vagrant
   when: stat_project.stat.exists == false
+
+### Symfony 3
+- name: Download symfony3 installer
+  get_url:
+    url: "{{ symfony_url }}"
+    dest: "{{ symfony_dest }}"
+    mode: 777
+  when: symfony_major_version == "3"
+
+- name: Create symfony3 project
+  shell: cd /vagrant && symfony3 new {{ projectname }} {{ symfony_version }}
+  when: stat_project.stat.exists == false and symfony_major_version == "3"
+
+# Symfony 4
+- name: Create symfony4 project
+  composer:
+    command: create-project
+    arguments: symfony/skeleton /vagrant/{{ projectname }} ~{{ symfony_version }}
+    working_dir: /vagrant/{{ projectname }}
+    prefer_dist: yes
+  environment:
+    APP_ENV: prod
+  become_user: vagrant
+  register: new_symfony_project
+  when: stat_project.stat.exists == false and symfony_major_version == "4"
+
+- name:  Install composer
+  shell: (cd /vagrant/{{ projectname }} && composer install --no-interaction)
+  become_user: vagrant
+  when: new_symfony_project.changed and symfony_major_version == "4"
+
+# Clean solution, but with problems on Linux hosts
+# - name: Install composer
+#   composer:
+#     command: install
+#     working_dir: /vagrant/{{ projectname }}
+#   become_user: vagrant
+#   when: new_symfony_project.changed
 
 ##################################################
 ### Configure nginx
-
 - name: Copy new virtual hosts file.
   template:
-    src=nginx_project_vhost.skel
-    dest=/etc/nginx/sites-available/{{ projectname }}
+    src: nginx_project_vhost_symfony{{ symfony_major_version }}.skel
+    dest: /etc/nginx/sites-available/{{ projectname }}
+    force: no
 
 - name: Enable new virtual hosts file.
   file:
-    src=/etc/nginx/sites-available/{{ projectname }}
-    dest=/etc/nginx/sites-enabled/{{ projectname }}
-    state=link
+    src: /etc/nginx/sites-available/{{ projectname }}
+    dest: /etc/nginx/sites-enabled/{{ projectname }}
+    state: link
   notify:
    - restart nginx

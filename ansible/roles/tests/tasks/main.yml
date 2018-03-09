@@ -1,7 +1,9 @@
 ##################################################
 ### Restart services for testing
 - name: Restart services for testing
-  service: name={{ item }} state=restarted
+  service: 
+    name: "{{ item }}"
+    state: restarted
   with_items:
   - nginx
   - php{{ php_version }}-fpm
@@ -13,49 +15,56 @@
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stderr }}"
+  debug: 
+    msg: "{{ test_result.stderr }}"
 
 - name: Check MySQL
   shell: 'mysql --version'
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stdout }}"
+  debug: 
+    msg: "{{ test_result.stdout }}"
 
 - name: Check Redis
   shell: 'redis-server --version'
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stdout }}"
+  debug:
+    msg: "{{ test_result.stdout }}"
 
 - name: Check PHP
   shell: 'php -v | head -1'
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stdout }}"
+  debug:
+    msg: "{{ test_result.stdout }}"
 
 - name: Check Composer
   shell: 'composer --version'
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stdout }}"
+  debug: 
+    msg: "{{ test_result.stdout }}"
 
 - name: Check PHPUnit
   shell: 'phpunit --version'
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stdout }}"
+  debug:
+    msg: "{{ test_result.stdout }}"
 
 - name: Check nodejs
   shell: 'nodejs -v'
   register: test_result
 
 - name: Display result
-  debug: msg="{{ test_result.stdout }}"
+  debug:
+    msg: "{{ test_result.stdout }}"
 
 ##################################################
 ### Functionality tests
@@ -65,5 +74,6 @@
   register: webserver
 
 - name: Webserver check result
-  fail: msg="Webserver isn't working properly"
+  fail:
+    msg: "Webserver isn't working properly"
   when: "'nginx' not in webserver.server"

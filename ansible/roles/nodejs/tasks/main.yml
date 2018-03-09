@@ -17,10 +17,10 @@
 ### Install nodejs
 - name: Download Installer from Repo
   get_url:
-    url="{{ nodejs_url }}"
-    dest="{{ nodejs_tmp }}"
-    mode=777
-    force=yes
+    url: "{{ nodejs_url }}"
+    dest: "{{ nodejs_tmp }}"
+    mode: 777
+    force: yes
   when: nodejs_repo.stdout == "0"
 
 - name: Run Installer
@@ -28,21 +28,25 @@
   when: nodejs_repo.stdout == "0"
 
 - name: Remove old Nodejs
-  apt: name={{ item }} state=absent
+  apt:
+    name: "{{ item }}"
+    state: absent
   with_items:
     - nodejs
   when: nodejs_installed.stdout != "0" and nodejs_installed.stdout == "0"
 
 - name: Install Nodejs
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - nodejs
 
 ##################################################
 ### Install nodejs plugins
-- name: Install nodejs plugins
-  npm: name="{{ item }}" global=yes
-  with_items:
-    - node-sass
-    - uglify-js
-    - eslint
+# - name: Install nodejs plugins
+#   npm: name="{{ item }}" global=yes
+#   with_items:
+#     - node-sass
+#     - uglify-js
+#     - eslint

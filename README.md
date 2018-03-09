@@ -1,4 +1,5 @@
-# Vagrant-Debian-Ansible-LEMP  
+# Vagrant-Debian-Ansible-LEMP
+
 [![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
 
 This is a development environment for Symfony projects on a Debian based Vagrantbox.
@@ -9,14 +10,14 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 |----------|---------------|----------------|----------|
 | Debian   | 8.10          | 9.3            | &#10003; |
 | Nginx    | 1.12.2        | 1.12.2         | &#10003; |
-| MySQL    | 5.5.58        | -              | &#10003; |
+| MySQL    | 5.5.59        | -              | &#10003; |
 | MariaDB  | -             | 10.1.26        | &#10003; |
 | Redis    | 2.8.17        | 3.2.6          | &#10003; |
-| PHP      | 7.1           | 7.1            | &#10003; |
-| PHPUnit  | 6.4.3         | 6.4.3          | &#10003; |
-| Composer | 1.5.2         | 1.5.2          | &#10003; |
-| Node.js  | 6.11.5        | 6.11.5         | &#10003; |
-| Symfony  | 3.3.14        | 3.3.14         | &#10003; |
+| PHP      | 7.2           | 7.2            | &#10003; |
+| PHPUnit  | 7.0.2         | 7.0.2          | &#10003; |
+| Composer | 1.6.3         | 1.6.3          | &#10003; |
+| Node.js  | 8.10.0        | 8.10.0         | &#10003; |
+| Symfony  | 4.0.6         | 4.0.6          | &#10003; |
 
 ## Requirements
 
@@ -77,9 +78,10 @@ configs:
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox
     servername: "lemp.test"         # Servername and domain for your projects
-    projectnames: ["foo","bar"]     # Comma-separated list with your projectnames
-                                    # Generated URLs => foo.lemp.test and bar.lemp.test
-    symfony_version: 3.3            # Symfony version like 3.3 or "lts"
+    projectnames:                   # Comma-separated list with your symfony projectnames (change requires: vagrant provision & vagrant hostmanager)
+      - foo                         # Generated URLs => foo.lemp.test
+      - bar                         # Generated URLs => bar.lemp.test
+    symfony_version: 4.0            # Symfony version like 4.0 or 3.4
 ```
 
 Every servername or projectname change needs an update of your local hostfile.
@@ -93,6 +95,17 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+09 March 2018
+
+- Added Symfony 4 support
+- Updated PHP to version 7.2
+- Ansible YAML improvements
+- Updated nodejs to version 8
+
+1 February 2017
+
+- Updated Ansible to version 2.4.3
 
 26 January 2018
 

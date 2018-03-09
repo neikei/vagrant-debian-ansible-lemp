@@ -1,7 +1,9 @@
 ##################################################
 ### Install basic system packages
 - name: Install basic packages
-  apt: name={{ item }} state=present
+  apt: 
+    name: "{{ item }}"
+    state: present
   with_items:
     - vim
     - git
@@ -20,7 +22,9 @@
 ##################################################
 ### Convenience
 - name: Configure inputrc and vimrc for root
-  template: src={{ item.src }} dest={{ item.dest }}
+  template: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
   with_items:
    - { src: inputrc, dest: /root/.inputrc }
    - { src: vimrc, dest: /root/.vimrc }
@@ -30,10 +34,15 @@
 ##################################################
 ### Install and configute ufw firewall
 - name: Set up firewall
-  apt: name=ufw state=present
+  apt: 
+    name: ufw
+    state: present
 
 - name: Allow Port 22
-  ufw: rule=allow port=22
+  ufw: 
+    rule: allow 
+    port: 22
 
 - name: Start the firewall
-  ufw: state=enabled
+  ufw: 
+    state: enabled

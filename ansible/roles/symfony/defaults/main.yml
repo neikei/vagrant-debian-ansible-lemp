@@ -1,2 +1,2 @@
 symfony_url: https://symfony.com/installer
-symfony_dest: /usr/local/bin/symfony
+symfony_dest: /usr/local/bin/symfony3

@@ -9,24 +9,35 @@
   register: php_required_installed
 
 - name: Remove different PHP version if installed
-  apt: name=php* state=absent purge=yes autoremove=yes
+  apt:
+    name: php*
+    state: absent
+    purge: yes
+    autoremove: yes
   when: php_installed.stdout != "0" and php_required_installed.stdout == "0"
 
 ##################################################
 ### Install and configure PHP
 - name: Add apt key for Debian
-  apt_key: url={{ php_repo_key }} state=present
+  apt_key:
+    url: "{{ php_repo_key }}"
+    state: present
 
 - name: Add repository for Debian
-  apt_repository: repo="deb {{ php_repo }} {{ ansible_distribution_release }} main" state=present update_cache=yes
+  apt_repository: 
+    repo: "deb {{ php_repo }} {{ ansible_distribution_release }} main"
+    state: present
+    update_cache: yes
 
 - name: Install PHP Packages
-  apt: name={{ item }} state=present
+  apt:
+    name: "{{ item }}"
+    state: present
   with_items:
     - php{{ php_version }}
     - php{{ php_version }}-fpm
     - php{{ php_version }}-mysql
-    - php{{ php_version }}-mcrypt
+#    - php{{ php_version }}-mcrypt
     - php{{ php_version }}-cli
     - php{{ php_version }}-curl
     - php{{ php_version }}-gd
@@ -61,22 +72,22 @@
 
 - name: Copy PHP-FPM config
   template:
-    src=www.conf
-    dest=/etc/php/{{ php_version }}/fpm/pool.d/www.conf
+    src: www.conf
+    dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
 
 - name: Configure timezone
   lineinfile:
-    dest=/etc/php/{{ php_version }}/fpm/php.ini
-    regexp='^;date.timezone'
-    line='date.timezone = "Europe/Berlin"'
-    backrefs=yes
+    dest: /etc/php/{{ php_version }}/fpm/php.ini
+    regexp: '^;date.timezone'
+    line: 'date.timezone = "Europe/Berlin"'
+    backrefs: yes
   notify:
    - restart php-fpm
 
 - name: Configure xDebug
   template:
-    src=20-xdebug.ini
-    dest=/etc/php/{{ php_version }}/fpm/conf.d/20-xdebug.ini
+    src: 20-xdebug.ini
+    dest: /etc/php/{{ php_version }}/fpm/conf.d/20-xdebug.ini
   notify:
    - restart php-fpm
 
@@ -90,17 +101,17 @@
 ### Install PHPUnit
 - name: Install PHPUnit
   get_url:
-    url="{{ phpunit_url }}"
-    dest="{{ phpunit_path }}"
-    mode=777
+    url: "{{ phpunit_url }}"
+    dest: "{{ phpunit_path }}"
+    mode: 777
 
 ##################################################
 ### Install Composer
 - name: Download Composer
   get_url:
-    url="{{ composer_url }}"
-    dest="{{ composer_tmp }}"
-    mode=777
+    url: "{{ composer_url }}"
+    dest: "{{ composer_tmp }}"
+    mode: 777
 
 - name: Install Composer
   shell: "cat {{ composer_tmp }} | php -- --install-dir={{ composer_path }}"
