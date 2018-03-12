@@ -44,9 +44,7 @@
 
 ##################################################
 ### Install nodejs plugins
-# - name: Install nodejs plugins
-#   npm: name="{{ item }}" global=yes
-#   with_items:
-#     - node-sass
-#     - uglify-js
-#     - eslint
+- name: Install nodejs plugins
+  npm: name="{{ item }}" global=yes
+  with_items:
+    - node-sass

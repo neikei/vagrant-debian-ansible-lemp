@@ -96,6 +96,10 @@ Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
 
+12 March 2018
+
+- Re-enabled node-sass installation
+
 09 March 2018
 
 - Added Symfony 4 support
