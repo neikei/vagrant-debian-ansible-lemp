@@ -96,6 +96,10 @@ Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
 
+23 March 2018
+
+- Improved the ansible installation to prevent breaking version changes
+
 12 March 2018
 
 - Re-enabled node-sass installation
