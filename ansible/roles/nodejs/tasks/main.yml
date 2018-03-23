@@ -44,7 +44,7 @@
 
 ##################################################
 ### Install nodejs plugins
-- name: Install nodejs plugins
-  npm: name="{{ item }}" global=yes
-  with_items:
-    - node-sass
+#- name: Install nodejs plugins
+#  npm: name="{{ item }}" global=yes
+#  with_items:
+#    - node-sass
