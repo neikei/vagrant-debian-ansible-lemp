@@ -96,6 +96,10 @@ Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
 
+28 March 2018
+
+- Updated Debian to version 9.4
+
 23 March 2018
 
 - Improved the ansible installation to prevent breaking version changes
