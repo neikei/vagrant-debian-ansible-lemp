@@ -17,7 +17,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 | PHPUnit  | 7.0.2         | 7.0.2          | &#10003; |
 | Composer | 1.6.3         | 1.6.3          | &#10003; |
 | Node.js  | 8.10.0        | 8.10.0         | &#10003; |
-| Symfony  | 4.0.6         | 4.0.6          | &#10003; |
+| Symfony  | 4.0.8         | 4.0.8          | &#10003; |
 
 ## Requirements
 
@@ -95,6 +95,10 @@ vagrant hostmanager
 Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
+
+13 April 2018
+
+- Updated Ansible to version 2.5
 
 28 March 2018
 
