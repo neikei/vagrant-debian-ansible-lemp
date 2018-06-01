@@ -6,3 +6,7 @@ install:
   - pip install ansible
 script:
   - ansible-playbook --syntax-check -i ansible/inventory ansible/playbook.yml 
+  - apt-get update && apt-get install -y unzip wget git php-cli python ruby
+  - wget https://github.com/neikei/syntaxchecks/archive/master.zip
+  - unzip master.zip && rm master.zip
+  - syntaxchecks-master/syntaxchecks.sh -p "`pwd`" -s
