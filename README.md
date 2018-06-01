@@ -1,6 +1,6 @@
 # Vagrant-Debian-Ansible-LEMP
 
-[![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp)
+[![Build Status](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp.svg?branch=master)](https://travis-ci.org/neikei/vagrant-debian-ansible-lemp) [![works badge](https://cdn.rawgit.com/nikku/works-on-my-machine/v0.2.0/badge.svg)](https://github.com/nikku/works-on-my-machine)
 
 This is a development environment for Symfony projects on a Debian based Vagrantbox.
 
@@ -9,21 +9,21 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 | Software | Debian Jessie | Debian Stretch | Tested   |
 |----------|---------------|----------------|----------|
 | Debian   | 8.10          | 9.4            | &#10003; |
-| Nginx    | 1.12.2        | 1.12.2         | &#10003; |
-| MySQL    | 5.5.59        | -              | &#10003; |
+| Nginx    | 1.14.0        | 1.14.0         | &#10003; |
+| MySQL    | 5.5.60        | -              | &#10003; |
 | MariaDB  | -             | 10.1.26        | &#10003; |
 | Redis    | 2.8.17        | 3.2.6          | &#10003; |
 | PHP      | 7.2           | 7.2            | &#10003; |
-| PHPUnit  | 7.0.2         | 7.0.2          | &#10003; |
-| Composer | 1.6.3         | 1.6.3          | &#10003; |
-| Node.js  | 8.10.0        | 8.10.0         | &#10003; |
-| Symfony  | 4.0.8         | 4.0.8          | &#10003; |
+| PHPUnit  | 7.2.2         | 7.2.2          | &#10003; |
+| Composer | 1.6.5         | 1.6.5          | &#10003; |
+| Node.js  | 8.11.2        | 8.11.2         | &#10003; |
+| Symfony  | 3.4 or 4.1    | 3.4 or 4.1     | &#10003; |
 
 ## Requirements
 
 - Hypervisor
-  - Virtualbox >= 5.2.4
-  - Parallels >= 10
+  - Virtualbox on Windows and Linux >= 5.2.4
+  - Parallels on Mac OS >= 10
 - Vagrant >= 2.0.1
 - Vagrant Plugins:
   - vagrant-hostmanager # necessary for host entries
@@ -44,7 +44,7 @@ This is a development environment for Symfony projects on a Debian based Vagrant
 - Default web root: /vagrant/web
 - Symfony projects: http://example.lemp.test
 - Symfony web root: /vagrant/example
-- MySQL: 192.168.56.111:3306
+- Database: 192.168.56.111:3306
   - user: admin
   - password: changeme
   - root is allowed to access the database from localhost without a password
@@ -81,7 +81,7 @@ configs:
     projectnames:                   # Comma-separated list with your symfony projectnames (change requires: vagrant provision & vagrant hostmanager)
       - foo                         # Generated URLs => foo.lemp.test
       - bar                         # Generated URLs => bar.lemp.test
-    symfony_version: 4.0            # Symfony version like 4.0 or 3.4
+    symfony_version: 4.1            # Symfony version like 4.1 or 3.4
 ```
 
 Every servername or projectname change needs an update of your local hostfile.
@@ -90,166 +90,14 @@ Every servername or projectname change needs an update of your local hostfile.
 vagrant hostmanager
 ```
 
-## Feedback, Issues and Pull-Requests
+## Screenshot
 
-Feel free to report issues, fork this project and submit pull requests.
+![Image](docs/screenshot.png)
 
 ## Changelog
 
-01 June 2018
+The changelog is available [here](docs/changelog.md).
 
-- Added syntaxchecks to travis
+## Feedback, Issues and Pull-Requests
 
-13 April 2018
-
-- Updated Ansible to version 2.5
-
-28 March 2018
-
-- Updated Debian to version 9.4
-
-23 March 2018
-
-- Improved the ansible installation to prevent breaking version changes
-- Disabled node-sass installation again
-
-12 March 2018
-
-- Re-enabled node-sass installation
-
-09 March 2018
-
-- Added Symfony 4 support
-- Updated PHP to version 7.2
-- Ansible YAML improvements
-- Updated nodejs to version 8
-
-1 February 2017
-
-- Updated Ansible to version 2.4.3
-
-26 January 2018
-
-- Updated Debian version to 9.3 and 8.10
-
-25 December 2017
-
-- Updated Vagrant version to 2.0.1
-- Documentation improvements
-
-08 December 2017
-
-- Documentation improvements
-
-30 November 2017
-
-- Updated Ansible version to 2.4.2.0
-
-07 November 2017
-
-- Added php-apcu and php-memcache packages
-- Improved Ansible installation
-- Pinned Ansible version to 2.4.1.0
-
-06 November 2017
-
-- Removed Varnish
-- Updated Debian to version 9.2
-
-04 October 2017
-
-- Fixed Nginx vhost include configuration
-
-06 September 2017
-
-- Changed Nginx installation source to the official repository
-- Fixed Nodejs installation
-
-30 August 2017
-
-- Modifications for Debian Stretch
-- Improved xDebug configuration
-
-08 August 2017
-
-- Modifications for Debian Stretch
-- Added os switcher to the config.yaml
-- Updated Readme.md
-
-09 July 2017
-
-- xDebug configuration improvements
-- Added check of minimum Vagrant version
-
-28 June 2017
-
-- Updated Debian to version 8.8
-
-14 June 2017
-
-- Configurable symfony version
-- Improved service start after vagrant up
-
-06 June 2017
-
-- Added basic xDebug configuration
-
-02 June 2017
-
-- Improved service start and autostart
-- Updated Readme.md
-- Updated .gitignore
-- Added imagemagick
-
-02 May 2017
-
-- Update local hostfile instead of re-build the whole box
-
-31 March 2017
-
-- Documentation improvements
-
-21 March 2017
-
-- Improved multi-project handling
-- Added Redis
-- Added Varnish
-
-16 March 2017
-
-- Node.js installation improvements
-- Updated Nginx to version 1.10.3 from dotdeb
-
-14 March 2017
-
-- Added hostmanger for local hostfile management
-- Improved PHP, Nginx and Nodejs installation
-- Added Symfony 3.2 compatibility
-
-27 February 2017
-
-- Updated Debian to version 8.7
-
-22 February 2017
-
-- Added PHPUnit
-- Added tests for the Vagrantbox
-- Added Travis CI builds
-
-21 February 2017
-
-- Added nodejs
-
-17 February 2017
-
-- Improved the PHP provisioning
-
-16 February 2017
-
-- Changed PHP repository from dotdeb.org to sury.org
-- Updated PHP to version 7.1
-
-14 February 2017
-
-- Initial Commit
-- Debian 8.6, Nginx, PHP 7.0, MySQL
+Feel free to report issues, fork this project and submit pull requests.
