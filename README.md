@@ -96,6 +96,10 @@ Feel free to report issues, fork this project and submit pull requests.
 
 ## Changelog
 
+01 June 2018
+
+- Added syntaxchecks to travis
+
 13 April 2018
 
 - Updated Ansible to version 2.5
