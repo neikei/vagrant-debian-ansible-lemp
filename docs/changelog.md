@@ -1,3 +1,7 @@
+01 July 2018
+
+- Updated Ansible to version 2.6
+
 02 June 2018
 
 - Updated Ansible installation process
