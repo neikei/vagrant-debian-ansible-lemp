@@ -1,8 +1,8 @@
 configs:
-    os: "9.4"                       # Choose between 8.10 and 9.4 (change requires: vagrant destroy & vagrant up)
+    os: "8.11"                       # Choose between 8.11 and 9.5 (change requires: vagrant destroy & vagrant up)
     private_ip: "192.168.56.111"    # VM IP in your host-only-network
     vmname: "symfony-development"   # VM name for Virtualbox
     servername: "lemp.test"         # Servername and domain for your projects
     projectnames:                   # Comma-separated list with your symfony projectnames (change requires: vagrant provision & vagrant hostmanager)
       - example
-    symfony_version: 4.1            # Symfony version like 4.1 or 3.4
+    symfony_version: 3.4            # Symfony version like 4.1 or 3.4
