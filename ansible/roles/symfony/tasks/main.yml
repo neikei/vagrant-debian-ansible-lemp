@@ -36,7 +36,9 @@
   when: symfony_major_version == "3"
 
 - name: Create symfony3 project
-  shell: cd /vagrant && symfony3 new {{ projectname }} {{ symfony_version }}
+  command: symfony3 new {{ projectname }} {{ symfony_version }}
+  args:
+    chdir: /vagrant
   when: stat_project.stat.exists == false and symfony_major_version == "3"
 
 # Symfony 4
@@ -53,7 +55,9 @@
   when: stat_project.stat.exists == false and symfony_major_version == "4"
 
 - name:  Install composer
-  shell: (cd /vagrant/{{ projectname }} && composer install --no-interaction)
+  command: composer install --no-interaction
+  args:
+    chdir: "/vagrant/{{ projectname }}"
   become_user: vagrant
   when: new_symfony_project.changed and symfony_major_version == "4"
 
