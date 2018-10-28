@@ -14,9 +14,9 @@ This is a development environment for [Symfony](https://symfony.com/) projects o
 | MariaDB  | -             | 10.1.26        | &#10003; |
 | Redis    | 2.8.17        | 3.2.6          | &#10003; |
 | PHP      | 7.2           | 7.2            | &#10003; |
-| PHPUnit  | 7.3.2         | 7.3.2          | &#10003; |
+| PHPUnit  | 7.4.3         | 7.4.3          | &#10003; |
 | Composer | 1.7.2         | 1.7.2          | &#10003; |
-| Node.js  | 8.11.4        | 8.11.4         | &#10003; |
+| Node.js  | 8.12.0        | 8.12.0         | &#10003; |
 | Symfony  | 3.4 or 4.1    | 3.4 or 4.1     | &#10003; |
 
 ## Requirements
