@@ -128,7 +128,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ## Ensure PHP-FPM and Nginx restart after vagrant up
-  config.vm.provision "shell", inline: "service php7.2-fpm restart && service nginx restart", run: "always"
+  config.vm.provision "shell", inline: "service php7.3-fpm restart && service nginx restart", run: "always"
   
   # Post-up message
   config.vm.post_up_message = "See https://github.com/neikei/vagrant-debian-ansible-lemp for help and bug reports."
