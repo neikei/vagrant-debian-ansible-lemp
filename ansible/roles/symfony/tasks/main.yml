@@ -4,7 +4,7 @@
   get_url:
     url: "{{ symfony_url }}"
     dest: "{{ symfony_dest }}"
-    mode: 777
+    mode: 0777
 
 ##################################################
 ### Configure symfony project
@@ -32,7 +32,7 @@
   get_url:
     url: "{{ symfony_url }}"
     dest: "{{ symfony_dest }}"
-    mode: 777
+    mode: 0777
   when: symfony_major_version == "3"
 
 - name: Create symfony3 project

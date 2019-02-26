@@ -19,7 +19,7 @@
   get_url:
     url: "{{ nodejs_url }}"
     dest: "{{ nodejs_tmp }}"
-    mode: 777
+    mode: 0777
     force: yes
   when: nodejs_repo.stdout == "0"
 
